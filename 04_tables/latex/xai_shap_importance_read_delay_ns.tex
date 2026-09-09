@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Global SHAP feature importance for read_delay_ns.}
+\label{tab:xai_shap_importance_read_delay_ns}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+feature & mean\_abs\_shap & mean\_shap & importance\_pct \\
+\midrule
+num\_\_vdd & 7.348 & 3.314 & 21.48 \\
+num\_\_cs & 3.062 & 0.1708 & 8.951 \\
+num\_\_vgs\_retention & 2.565 & 0.2338 & 7.500 \\
+num\_\_charge\_share\_ratio & 2.211 & 0.3780 & 6.464 \\
+num\_\_vwl\_low & 1.858 & 0.01944 & 5.431 \\
+num\_\_sa\_aspect & 1.738 & 0.4888 & 5.080 \\
+cat\_\_corner\_FF & 1.716 & -1.716 & 5.017 \\
+num\_\_wsan & 1.694 & 0.5440 & 4.952 \\
+num\_\_vblpre\_ratio & 1.273 & -0.5806 & 3.722 \\
+num\_\_sa\_drive\_ratio & 1.123 & 0.3113 & 3.283 \\
+num\_\_cbl\_ratio & 0.9658 & 0.06474 & 2.824 \\
+num\_\_inv\_thermal\_v & 0.9189 & -0.1222 & 2.686 \\
+num\_\_wsap\_ratio & 0.8766 & 0.2002 & 2.563 \\
+num\_\_stored\_charge\_c & 0.8688 & -0.05047 & 2.540 \\
+num\_\_cbl\_over\_cs & 0.7629 & -8.282e-4 & 2.230 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Explainer: PermutationExplainer (model-agnostic).
+\end{table}

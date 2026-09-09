@@ -1,0 +1,27 @@
+\begin{table}[!t]
+\centering
+\caption{Mean Friedman ranks of the surrogate models for read_delay_ns (lower is better).}
+\label{tab:statistics_surrogate_ranks_surrogate_read_delay_ns}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+group & mean\_rank & rank\_position \\
+\midrule
+mlp\_deep & 1.200 & 1 \\
+mlp & 1.800 & 2 \\
+catboost & 3 & 3 \\
+hist\_gbr & 4.400 & 4 \\
+lightgbm & 4.600 & 5 \\
+xgboost & 6 & 6 \\
+random\_forest & 7 & 7 \\
+extra\_trees & 8 & 8 \\
+poly2\_ridge & 9 & 9 \\
+svr\_rbf & 10 & 10 \\
+gpr & 11 & 11 \\
+ridge & 12.20 & 12 \\
+elasticnet & 12.80 & 13 \\
+knn & 14 & 14 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Friedman p = 7.537e-09; Nemenyi critical difference = 8.874 at alpha = 0.05.
+\end{table}

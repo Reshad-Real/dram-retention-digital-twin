@@ -1,0 +1,22 @@
+\begin{algorithm}[!t]
+\caption{Cross-validated surrogate selection}
+\label{alg:cross_validated_surrogate_selection}
+\begin{algorithmic}[1]
+\Require dataset $\mathcal{D}$ with a fixed train/val/test split
+\Require model zoo $\mathcal{Z}$, folds $K$, primary metric $\mu$
+\Ensure per-target best surrogate $f^\star_y$ and its held-out score
+    \ForEach{target $y$}
+        \State $\mathcal{D}_y \leftarrow \{(\mathbf{x},y) \in \mathcal{D} : y \text{ observed}\}$\Comment{drop per target, never globally}
+        \ForEach{model $m \in \mathcal{Z}$}
+            \For{$k \leftarrow 1$ \KwTo $K$}
+                \State fit $m$ on $\mathcal{D}_y^{\mathrm{dev}}\setminus \mathrm{fold}_k$; score on $\mathrm{fold}_k$
+                \State retain the fold score\Comment{needed by the statistical tests}
+            \EndFor
+            \State refit $m$ on all of $\mathcal{D}_y^{\mathrm{dev}}$; score once on $\mathcal{D}_y^{\mathrm{test}}$
+        \EndFor
+        \State $f^\star_y \leftarrow \arg\max_m \overline{\mu}_{\mathrm{cv}}(m)$
+    \EndFor
+    \Return $\{f^\star_y\}$
+\end{algorithmic}
+\end{algorithm}
+% Note: The test split is touched exactly once per model and never participates in selection or tuning.

@@ -1,0 +1,119 @@
+{
+  "stage": "xai_main",
+  "started_utc": "2026-07-23T13:07:23.200759+00:00",
+  "finished_utc": "2026-07-23T13:16:08.439173+00:00",
+  "duration_s": 525.1813565999619,
+  "status": "success",
+  "config_hash": "47d27a4f90303940",
+  "seeds": {
+    "master_seed": 20260723,
+    "python_random": true,
+    "numpy_legacy": true,
+    "PYTHONHASHSEED": "20260723"
+  },
+  "parameters": {},
+  "outputs": {
+    "log10_retention_time_s": {
+      "model": "mlp_deep",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 93.36,
+      "top_features": [
+        "num__vwl_overdrive",
+        "num__vblpre_ratio",
+        "num__vwl_boost",
+        "num__vdd",
+        "num__t_write_pulse"
+      ],
+      "notes": []
+    },
+    "read_delay_ns": {
+      "model": "mlp_deep",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 72.81,
+      "top_features": [
+        "num__vdd",
+        "num__cs",
+        "num__vgs_retention",
+        "num__charge_share_ratio",
+        "num__vwl_low"
+      ],
+      "notes": []
+    },
+    "log10_total_power_nw": {
+      "model": "mlp_deep",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 96.74,
+      "top_features": [
+        "num__vdd",
+        "num__charge_share_ratio",
+        "num__vblpre_ratio",
+        "num__sa_drive_ratio",
+        "num__stored_charge_c"
+      ],
+      "notes": []
+    },
+    "read_margin_mv": {
+      "model": "mlp",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 70.49,
+      "top_features": [
+        "num__vdd",
+        "num__cbl_ratio",
+        "num__cbl_over_cs",
+        "num__vgs_retention",
+        "num__vwl_boost"
+      ],
+      "notes": []
+    },
+    "write_efficiency": {
+      "model": "mlp_deep",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 79.13,
+      "top_features": [
+        "num__vwl_overdrive",
+        "cat__corner_FF",
+        "cat__corner_FS",
+        "num__t_write_pulse",
+        "cat__corner_TT"
+      ],
+      "notes": []
+    },
+    "energy_per_access_fj": {
+      "model": "mlp_deep",
+      "explainer": "PermutationExplainer (model-agnostic)",
+      "elapsed_s": 75.09,
+      "top_features": [
+        "num__vdd",
+        "num__charge_share_ratio",
+        "num__signal_charge_c",
+        "num__stored_charge_c",
+        "num__sa_drive_ratio"
+      ],
+      "notes": []
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

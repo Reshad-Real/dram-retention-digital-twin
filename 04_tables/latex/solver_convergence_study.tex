@@ -1,0 +1,16 @@
+\begin{table}[!t]
+\centering
+\caption{Sensitivity of the extracted metrics to the transient print step and integration method, relative to a 20 ps GEAR reference.}
+\label{tab:solver_convergence_study}
+\footnotesize
+\begin{tabular}{lrrrrrrrrrrrrrrrrrr}
+\toprule
+setting & ms\_per\_sample & speedup\_vs\_reference & read\_margin\_mv\_median\_err\_pct & read\_margin\_mv\_p95\_err\_pct & read\_delay\_ns\_median\_err\_pct & read\_delay\_ns\_p95\_err\_pct & write\_delay\_ns\_median\_err\_pct & write\_delay\_ns\_p95\_err\_pct & v\_sn\_written\_v\_median\_err\_pct & v\_sn\_written\_v\_p95\_err\_pct & retention\_time\_s\_median\_err\_pct & retention\_time\_s\_p95\_err\_pct & energy\_per\_access\_fj\_median\_err\_pct & energy\_per\_access\_fj\_p95\_err\_pct & total\_power\_nw\_median\_err\_pct & total\_power\_nw\_p95\_err\_pct & read\_success\_agreement\_pct & write\_success\_agreement\_pct \\
+\midrule
+50 ps / GEAR & 63 & 1.693 & 0.009100 & 0.1449 & 0.01530 & 0.2420 & 0.1520 & 0.7592 & 0.003800 & 0.04200 & 0.001800 & 0.4649 & 0.05650 & 0.3348 & 0.05490 & 0.3300 & 100 & 100 \\
+50 ps / TRAP & 60.90 & 1.752 & 0.003100 & 0.02840 & 0.01110 & 0.1547 & 0.03910 & 0.6964 & 7.000e-4 & 0.005800 & 3.000e-4 & 0.05170 & 0.02130 & 0.1653 & 0.02070 & 0.1591 & 100 & 100 \\
+100 ps / GEAR & 47.40 & 2.249 & 0.01990 & 0.5967 & 0.1581 & 0.8344 & 0.3680 & 1.367 & 0.01190 & 0.1842 & 0.003400 & 1.738 & 0.1905 & 0.5836 & 0.1788 & 0.5444 & 100 & 100 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Percentages are relative errors against the 20 ps GEAR setting over the same design points; agreement columns give the share of points whose pass/fail label is unchanged.
+\end{table}

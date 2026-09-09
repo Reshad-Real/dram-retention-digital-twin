@@ -1,0 +1,20 @@
+\begin{table}[!t]
+\centering
+\caption{Median relative effect of each assist technique against the unassisted baseline.}
+\label{tab:assist_relative_effect_main}
+\footnotesize
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+assist\_config & retention\_time\_s & read\_delay\_ns & write\_delay\_ns & read\_margin\_mv & total\_power\_nw & energy\_per\_access\_fj & leakage\_current\_fa & refresh\_interval\_ms & feasible\_pct \\
+\midrule
+bitline\_precharge\_opt & 213.9 & -2.107 & 3.261 & 24.82 & 14.66 & 13.59 & 0.4531 & 76.25 & 25.33 \\
+combined\_low\_power & -1.824 & -6.188 & 11.06 & 70.93 & 90.28 & 83.29 & 32145 & -49.89 & 74 \\
+high\_k\_capacitor & -81.15 & 41.64 & 24.47 & -8.589 & 50.47 & 51.16 & 1198 & -77.04 & 17 \\
+negative\_wordline & -36.97 & 0.1076 & -0.1344 & -0.007552 & -0.03839 & -0.06395 & 1105 & -29.69 & 25.33 \\
+refresh\_interval\_opt & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 26.33 \\
+sense\_amp\_upsize & -0.003166 & -31.56 & 0.1046 & -1.128 & 12.51 & 14.00 & -0.003248 & -0.008343 & 28.00 \\
+wordline\_boost & 346.7 & -9.659 & -27.77 & 55.89 & 6.347 & 2.138 & 77.29 & 123.9 & 76.33 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Percentage change of the median over the same 300 paired base designs; positive means the metric increased.
+\end{table}

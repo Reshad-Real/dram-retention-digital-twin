@@ -1,0 +1,12 @@
+**Distribution of the hypervolume indicator across independent optimisation runs.**
+
+| indicator | group | n | mean | std | median | iqr | min | max | mean_ci_low | mean_ci_high |
+|---|---|---|---|---|---|---|---|---|---|---|
+| hypervolume | bayesian | 7 | 2498 | 93.49 | 2462 | 85.99 | 2401 | 2681 | 2442 | 2570 |
+| hypervolume | de | 7 | 950.5 | 163.2 | 905.7 | 236.4 | 733.5 | 1168 | 843.3 | 1064 |
+| hypervolume | moead | 7 | 429.4 | 7.685 | 434.6 | 12.20 | 418.1 | 436.4 | 424.1 | 434.0 |
+| hypervolume | nsga2 | 7 | 2857 | 118.0 | 2851 | 113.2 | 2673 | 3027 | 2777 | 2939 |
+| hypervolume | nsga3 | 7 | 2748 | 198.2 | 2700 | 138.3 | 2436 | 3088 | 2617 | 2884 |
+| hypervolume | pso | 7 | 892.2 | 109.0 | 891.4 | 113.6 | 728.7 | 1047 | 818.1 | 965.0 |
+
+_Friedman p = 4.288e-06; Kendall's W = 0.9347. Higher is better. mean_ci_* are 95 % percentile-bootstrap intervals._

@@ -1,0 +1,9 @@
+technique,category,description,parameters_modified,refresh_policy
+baseline,reference,"Unassisted reference: nominal wordline boost, VDD/2 bitline precharge, grounded wordline low level and an ideal (leakage-free) storage dielectric.","rdiel, vblpre_ratio, vwl_boost, vwl_low",default
+high_k_capacitor,cell,"High-k / high-C storage capacitor: 1.8x storage capacitance at the same cell footprint, at the cost of a leakier dielectric.","cs, rdiel",default
+wordline_boost,periphery,Elevated VPP so the access device passes a full '1' without a Vth drop.,vwl_boost,default
+negative_wordline,periphery,"Negative wordline low level. This suppresses subthreshold conduction from the storage node to the bitline, but it simultaneously raises the reverse gate-to-drain field at the storage-node junction and therefore increases gate-induced drain leakage (GIDL). Which effect wins is a property of the device, not an assumption: the assist study measures it. For the PTM low-power card used here, subthreshold is already negligible at VWL = 0, so the GIDL term dominates beyond roughly -0.15 V.",vwl_low,default
+bitline_precharge_opt,periphery,"Bitline precharge level moved below VDD/2, trading '0' margin for '1' margin and reducing precharge energy.",vblpre_ratio,default
+sense_amp_upsize,periphery,"Larger, PMOS-rebalanced sense-amplifier latch with a stronger enable footer: lower input-referred offset and faster resolution.","wen_ratio, wsan, wsap_ratio",default
+refresh_interval_opt,policy,Retention-aware refresh scheduling: the refresh interval tracks the measured worst-case retention with a tightened guard band instead of a fixed 64 ms budget.,-,retention_aware
+combined_low_power,combined,"All cell, periphery and policy assists applied together -- the configuration the multi-objective search is expected to approach.","cs, rdiel, vblpre_ratio, vwl_boost, vwl_low, wsan",retention_aware

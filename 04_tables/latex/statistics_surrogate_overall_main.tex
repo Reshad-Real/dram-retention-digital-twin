@@ -1,0 +1,26 @@
+\begin{table}[!t]
+\centering
+\caption{Surrogate models ranked by mean Friedman rank across every modelled response (lower is better).}
+\label{tab:statistics_surrogate_overall_main}
+\footnotesize
+\begin{tabular}{lr}
+\toprule
+model & mean\_rank\_across\_responses \\
+\midrule
+mlp\_deep & 1.400 \\
+mlp & 2.233 \\
+catboost & 2.733 \\
+lightgbm & 4.200 \\
+hist\_gbr & 4.833 \\
+xgboost & 5.600 \\
+poly2\_ridge & 8.100 \\
+random\_forest & 8.800 \\
+gpr & 8.933 \\
+extra\_trees & 9.067 \\
+svr\_rbf & 10.10 \\
+knn & 12.67 \\
+ridge & 12.87 \\
+elasticnet & 13.47 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,407 @@
+{
+  "tag": "main",
+  "config_hash": "e22061fdb47e16e7",
+  "dataset": {
+    "n_requested": 50000,
+    "n_completed": 50000,
+    "n_simulations_ok": 49999,
+    "success_rate": 0.99998,
+    "duration_s": 0.0,
+    "samples_per_second": 71428027540.329,
+    "sampler": "lhs",
+    "n_samples": 50000,
+    "n_dimensions": 15,
+    "seed": 1691686347,
+    "centered_l2_discrepancy": 0.006804349185878689,
+    "discrepancy_n_used": 4000.0,
+    "min_pairwise_distance": 0.4114723192525593,
+    "min_distance_n_used": 4000.0,
+    "mean_coordinate": 0.4999999934231667,
+    "min_coordinate": 1.8000959752575275e-06,
+    "max_coordinate": 0.9999988300884285,
+    "n_workers": 18,
+    "chunk_size": 125,
+    "config_hash": "954478d4cad7f9d6",
+    "model_fingerprint": "27fcaebadef24739",
+    "ngspice": "E:\\DRAM\\tools\\ng\\Spice64\\bin\\ngspice_con.exe"
+  },
+  "retention_validation": {
+    "table": "E:\\DRAM\\results\\tables\\retention_validation_main.csv",
+    "n_pairs": 200.0,
+    "pearson_r_log10": 0.9997378735980524,
+    "spearman_rho": 0.9995454886372162,
+    "median_abs_log10_error": 0.010721479747708762,
+    "mean_log10_error": -0.016681538904810774,
+    "geometric_mean_ratio": 0.9623176716560103,
+    "p90_abs_log10_error": 0.04450841014044889,
+    "within_factor_2_pct": 100.0,
+    "within_factor_10_pct": 100.0
+  },
+  "surrogates": [
+    {
+      "target": "write_efficiency",
+      "model": "mlp_deep",
+      "cv_r2_mean": 0.9930832160095326,
+      "test_r2": 0.9985878562945558
+    },
+    {
+      "target": "energy_per_access_fj",
+      "model": "mlp_deep",
+      "cv_r2_mean": 0.9896102755167135,
+      "test_r2": 0.996143423163626
+    },
+    {
+      "target": "log10_total_power_nw",
+      "model": "mlp_deep",
+      "cv_r2_mean": 0.973618033643945,
+      "test_r2": 0.982660642628256
+    },
+    {
+      "target": "read_delay_ns",
+      "model": "mlp_deep",
+      "cv_r2_mean": 0.9710846880657624,
+      "test_r2": 0.9877842890660626
+    },
+    {
+      "target": "read_margin_mv",
+      "model": "mlp",
+      "cv_r2_mean": 0.9613862830069532,
+      "test_r2": 0.9896559778042502
+    },
+    {
+      "target": "log10_retention_time_s",
+      "model": "mlp_deep",
+      "cv_r2_mean": 0.9114020793385064,
+      "test_r2": 0.9509762084125551
+    }
+  ],
+  "twin_benchmark": [
+    {
+      "batch_size": 1,
+      "total_ms": 116.2909,
+      "ms_per_design": 116.2909,
+      "designs_per_second": 8.6,
+      "spice_ms_per_design": 1202.141,
+      "speedup_vs_spice": 10.3
+    },
+    {
+      "batch_size": 10,
+      "total_ms": 64.2477,
+      "ms_per_design": 6.42477,
+      "designs_per_second": 155.6,
+      "spice_ms_per_design": 1202.141,
+      "speedup_vs_spice": 187.1
+    },
+    {
+      "batch_size": 100,
+      "total_ms": 73.7083,
+      "ms_per_design": 0.737083,
+      "designs_per_second": 1356.7,
+      "spice_ms_per_design": 1202.141,
+      "speedup_vs_spice": 1630.9
+    },
+    {
+      "batch_size": 1000,
+      "total_ms": 92.9518,
+      "ms_per_design": 0.092952,
+      "designs_per_second": 10758.3,
+      "spice_ms_per_design": 1202.141,
+      "speedup_vs_spice": 12933.0
+    },
+    {
+      "batch_size": 10000,
+      "total_ms": 324.8272,
+      "ms_per_design": 0.032483,
+      "designs_per_second": 30785.6,
+      "spice_ms_per_design": 1202.141,
+      "speedup_vs_spice": 37008.6
+    }
+  ],
+  "optimization": [
+    {
+      "algorithm": "nsga2",
+      "label": "NSGA-II",
+      "runs": 7,
+      "hv_median": 2851.4698855585493,
+      "hv_mean": 2857.0848315690555,
+      "hv_std": 118.03369852148512,
+      "igd_plus_median": 8.868131431091445,
+      "spacing_median": 3.374947316351543,
+      "spread_median": 195.2290652124641,
+      "n_solutions_median": 100.0,
+      "runtime_s_median": 4.351
+    },
+    {
+      "algorithm": "nsga3",
+      "label": "NSGA-III",
+      "runs": 7,
+      "hv_median": 2700.272179417269,
+      "hv_mean": 2747.6808858813893,
+      "hv_std": 198.1776578277199,
+      "igd_plus_median": 9.573690191695558,
+      "spacing_median": 6.093824716887657,
+      "spread_median": 167.8699229903949,
+      "n_solutions_median": 40.0,
+      "runtime_s_median": 4.467
+    },
+    {
+      "algorithm": "bayesian",
+      "label": "Bayesian optimisation (multi-objective TPE)",
+      "runs": 7,
+      "hv_median": 2461.839117670839,
+      "hv_mean": 2497.6108889155144,
+      "hv_std": 93.4871754661496,
+      "igd_plus_median": 11.985630554696456,
+      "spacing_median": 2.6113062644015383,
+      "spread_median": 198.91721342953076,
+      "n_solutions_median": 245.0,
+      "runtime_s_median": 551.373
+    },
+    {
+      "algorithm": "de",
+      "label": "Differential evolution",
+      "runs": 7,
+      "hv_median": 905.6742563529108,
+      "hv_mean": 950.525175932819,
+      "hv_std": 163.24465085014165,
+      "igd_plus_median": 31.29957225233804,
+      "spacing_median": 8.87660326149737,
+      "spread_median": 134.03629796750928,
+      "n_solutions_median": 12.0,
+      "runtime_s_median": 4.564
+    },
+    {
+      "algorithm": "pso",
+      "label": "Particle-swarm optimisation",
+      "runs": 7,
+      "hv_median": 891.4469505692107,
+      "hv_mean": 892.2044368325651,
+      "hv_std": 108.99767683911833,
+      "igd_plus_median": 33.44191981344949,
+      "spacing_median": 8.08753370823954,
+      "spread_median": 142.35224672394244,
+      "n_solutions_median": 13.0,
+      "runtime_s_median": 4.878
+    },
+    {
+      "algorithm": "moead",
+      "label": "MOEA/D",
+      "runs": 7,
+      "hv_median": 434.55597031123153,
+      "hv_mean": 429.3898633664079,
+      "hv_std": 7.685346756308345,
+      "igd_plus_median": 0.1902954361541187,
+      "spacing_median": 0.2040544783817388,
+      "spread_median": 4.207647796635028,
+      "n_solutions_median": 99.0,
+      "runtime_s_median": 249.249
+    }
+  ],
+  "spice_verification": {
+    "retention_time_s_rel_error_pct": 46.334499213575256,
+    "read_delay_ns_rel_error_pct": 30.821002527246304,
+    "total_power_nw_rel_error_pct": 10.313039295367378,
+    "read_margin_mv_rel_error_pct": 3.0413215511343923
+  },
+  "sobol_top": [
+    {
+      "response": "read_delay_ns",
+      "variable": "vdd",
+      "S1": 0.6196523907591727,
+      "ST": 0.7608437197158658,
+      "interaction": 0.1411913289566931,
+      "S1_normalised": 0.7937530265992843,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "total_power_nw",
+      "variable": "vdd",
+      "S1": 0.3614326605671125,
+      "ST": 0.6522191281645109,
+      "interaction": 0.2907864675973983,
+      "S1_normalised": 0.5052424421306555,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "read_margin_mv",
+      "variable": "cbl_ratio",
+      "S1": 0.3649799762382362,
+      "ST": 0.5098647134000663,
+      "interaction": 0.1448847371618301,
+      "S1_normalised": 0.5247276105146574,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "retention_time_s",
+      "variable": "cs",
+      "S1": 0.1812610709158843,
+      "ST": 0.3844010705557862,
+      "interaction": 0.2031399996399019,
+      "S1_normalised": 0.2272372966024575,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "retention_time_s",
+      "variable": "vblpre_ratio",
+      "S1": 0.2140717087255113,
+      "ST": 0.34790162329023,
+      "interaction": 0.1338299145647186,
+      "S1_normalised": 0.2683702359478393,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "total_power_nw",
+      "variable": "cs",
+      "S1": 0.1882872433414613,
+      "ST": 0.3443725337198461,
+      "interaction": 0.1560852903783848,
+      "S1_normalised": 0.2632045109001005,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "read_margin_mv",
+      "variable": "vwl_boost",
+      "S1": 0.2201118686974544,
+      "ST": 0.3172835242379077,
+      "interaction": 0.0971716555404533,
+      "S1_normalised": 0.316452360203292,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "total_power_nw",
+      "variable": "vwl_low",
+      "S1": 0.0041533988677169,
+      "ST": 0.3148491735152734,
+      "interaction": 0.3106957746475565,
+      "S1_normalised": 0.0058059871616896,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "retention_time_s",
+      "variable": "cbl_ratio",
+      "S1": 0.2088486754092333,
+      "ST": 0.2882742430738017,
+      "interaction": 0.0794255676645683,
+      "S1_normalised": 0.2618223988151416,
+      "n_evaluations": 7680
+    },
+    {
+      "response": "total_power_nw",
+      "variable": "cbl_ratio",
+      "S1": 0.1345864488651728,
+      "ST": 0.2678658564413932,
+      "interaction": 0.1332794075762204,
+      "S1_normalised": 0.1881368053336347,
+      "n_evaluations": 7680
+    }
+  ],
+  "yield": {
+    "min": 100.0,
+    "median": 100.0,
+    "max": 100.0
+  },
+  "assist": [
+    {
+      "assist_config": "bitline_precharge_opt",
+      "retention_time_s": 213.8832569281164,
+      "read_delay_ns": -2.107096966775368,
+      "write_delay_ns": 3.260989448658713,
+      "read_margin_mv": 24.820008055583425,
+      "total_power_nw": 14.65842056926776,
+      "energy_per_access_fj": 13.592571768671192,
+      "leakage_current_fa": 0.4531332177705849,
+      "refresh_interval_ms": 76.24712972265174,
+      "feasible_pct": 25.333333333333336
+    },
+    {
+      "assist_config": "combined_low_power",
+      "retention_time_s": -1.8244940190182524,
+      "read_delay_ns": -6.187737064491838,
+      "write_delay_ns": 11.060730464904411,
+      "read_margin_mv": 70.93318900412844,
+      "total_power_nw": 90.28225484881052,
+      "energy_per_access_fj": 83.29363011283573,
+      "leakage_current_fa": 32144.857371067104,
+      "refresh_interval_ms": -49.89334758266766,
+      "feasible_pct": 74.0
+    },
+    {
+      "assist_config": "high_k_capacitor",
+      "retention_time_s": -81.15435533879719,
+      "read_delay_ns": 41.63920392649991,
+      "write_delay_ns": 24.471513829487375,
+      "read_margin_mv": -8.589265934951019,
+      "total_power_nw": 50.46882265636816,
+      "energy_per_access_fj": 51.16388785099084,
+      "leakage_current_fa": 1197.9006737170887,
+      "refresh_interval_ms": -77.04213602417869,
+      "feasible_pct": 17.0
+    },
+    {
+      "assist_config": "negative_wordline",
+      "retention_time_s": -36.96657753496238,
+      "read_delay_ns": 0.1075635903251104,
+      "write_delay_ns": -0.134393777854036,
+      "read_margin_mv": -0.0075521095559527,
+      "total_power_nw": -0.0383940022984363,
+      "energy_per_access_fj": -0.0639458684645433,
+      "leakage_current_fa": 1105.229228216497,
+      "refresh_interval_ms": -29.694022718363623,
+      "feasible_pct": 25.333333333333336
+    },
+    {
+      "assist_config": "refresh_interval_opt",
+      "retention_time_s": 0.0,
+      "read_delay_ns": 0.0,
+      "write_delay_ns": 0.0,
+      "read_margin_mv": 0.0,
+      "total_power_nw": 0.0,
+      "energy_per_access_fj": 0.0,
+      "leakage_current_fa": 0.0,
+      "refresh_interval_ms": 0.0,
+      "feasible_pct": 26.33333333333333
+    },
+    {
+      "assist_config": "sense_amp_upsize",
+      "retention_time_s": -0.0031655404331254,
+      "read_delay_ns": -31.56330897855761,
+      "write_delay_ns": 0.1045738818560293,
+      "read_margin_mv": -1.1277816936865137,
+      "total_power_nw": 12.508351365698744,
+      "energy_per_access_fj": 14.003650101687072,
+      "leakage_current_fa": -0.0032482523526833,
+      "refresh_interval_ms": -0.0083431869138728,
+      "feasible_pct": 28.000000000000004
+    },
+    {
+      "assist_config": "wordline_boost",
+      "retention_time_s": 346.7351848064925,
+      "read_delay_ns": -9.658678597590376,
+      "write_delay_ns": -27.765672806297317,
+      "read_margin_mv": 55.89190413855592,
+      "total_power_nw": 6.347241403257198,
+      "energy_per_access_fj": 2.138406121136493,
+      "leakage_current_fa": 77.28869759473092,
+      "refresh_interval_ms": 123.85579367357602,
+      "feasible_pct": 76.33333333333333
+    }
+  ],
+  "extrapolation": "A multi-objective search drives towards the edges of the design space, which is exactly where a surrogate has least support -- and any region in which it over-predicts will be exploited. The effect is measurable here. Against the held-out test split the twin reaches R2 = 0.95-0.999, but on the optimiser-selected Pareto designs the median twin-versus-SPICE error is 3.0 % (read_margin_mv), 10.3 % (total_power_nw), 30.8 % (read_delay_ns), 46.3 % (retention_time_s). Read margin and power -- the smoothest responses -- stay accurate; read delay and retention, which span decades and turn sharply near the feasibility boundary, degrade most. Expressed on the scale the quantity actually lives on, the retention discrepancy is 0.169 decades, a factor of 1.48. Two things make this manageable rather than fatal. First it is *measured*: every selected design is returned to NGSpice, so the error is a reported quantity, not an assumption. Second, the constraints survive the round trip -- 100 % of the selected designs pass both the read and the write check under full circuit simulation. The practical reading is that the twin is a search accelerator whose proposals must be confirmed in SPICE, not a replacement for it; re-simulating the Pareto region and refitting is the natural next iteration, and is what the framework's feedback path exists for.",
+  "packages": {
+    "python": "3.14.5",
+    "numpy": "2.4.6",
+    "scipy": "1.18.0",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.3.0",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "4.9.0",
+    "shap": "0.52.0",
+    "pymoo": "0.6.2",
+    "PySpice": "1.5",
+    "openpyxl": "3.1.5",
+    "joblib": "1.5.3"
+  }
+}

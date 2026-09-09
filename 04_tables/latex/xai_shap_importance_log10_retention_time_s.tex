@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Global SHAP feature importance for log10_retention_time_s.}
+\label{tab:xai_shap_importance_log10_retention_time_s}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+feature & mean\_abs\_shap & mean\_shap & importance\_pct \\
+\midrule
+num\_\_vwl\_overdrive & 0.9140 & -0.3222 & 9.324 \\
+num\_\_vblpre\_ratio & 0.8725 & -0.1337 & 8.901 \\
+num\_\_vwl\_boost & 0.8712 & -0.3000 & 8.887 \\
+num\_\_vdd & 0.8690 & -0.2194 & 8.865 \\
+num\_\_t\_write\_pulse & 0.6857 & -0.4805 & 6.996 \\
+num\_\_cbl\_over\_cs & 0.6709 & -0.01390 & 6.844 \\
+num\_\_cbl\_ratio & 0.6680 & -0.01999 & 6.814 \\
+num\_\_temperature\_k & 0.5328 & -0.009687 & 5.436 \\
+num\_\_temperature\_c & 0.4704 & -0.01015 & 4.799 \\
+num\_\_cs & 0.3938 & 0.04779 & 4.017 \\
+cat\_\_corner\_TT & 0.2738 & 0.2733 & 2.794 \\
+num\_\_vgs\_retention & 0.2521 & -0.06550 & 2.572 \\
+cat\_\_corner\_FF & 0.2433 & 0.2433 & 2.482 \\
+cat\_\_corner\_FS & 0.2216 & 0.2216 & 2.261 \\
+num\_\_wacc & 0.2180 & 0.005536 & 2.224 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Explainer: PermutationExplainer (model-agnostic).
+\end{table}

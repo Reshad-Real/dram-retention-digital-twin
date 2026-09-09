@@ -1,0 +1,25 @@
+### Algorithm 3: Quasi-static retention time from measured leakage
+
+```
+Algorithm 3: Quasi-static retention time from measured leakage
+Implemented by: dramdt.simulation.retention.quasistatic_retention
+
+Require: leakage characteristic I_leak(V) (measured, Algorithm 2)
+Require: node capacitance C_node, written level V_init
+Require: precharge level V_BLpre, capacitances C_s, C_BL, sense-amplifier offset Delta V_min
+Ensure:  retention time t_ret and a censoring flag
+
+  1: V_fail <- V_BLpre + Delta V_min (C_s+C_BL)/(C_s) // charge sharing no longer resolvable
+  2: if V_init <= V_fail
+  3:   return t_ret <- 0 // a real observation, not a missing value
+  4: end if
+  5: V <- uniform grid on [V_fail, V_init]
+  6: I <- Interp(I_leak, V)
+  7: if min I <= eps
+  8:   return t_ret <- inf (censored) // node equilibrates above V_fail
+  9: end if
+ 10: t_ret <- int_V_fail^V_init (C_node)/(I_leak)(V) dV // trapezoidal quadrature
+ 11: return t_ret
+
+Note: Exact for an isolated capacitor under quasi-static leakage; validated against direct long-window transient simulation.
+```

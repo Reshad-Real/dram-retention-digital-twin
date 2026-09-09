@@ -1,0 +1,244 @@
+{
+  "stage": "statistics_main",
+  "started_utc": "2026-07-23T13:17:55.685461+00:00",
+  "finished_utc": "2026-07-23T13:17:57.003226+00:00",
+  "duration_s": 1.2594031000044197,
+  "status": "success",
+  "config_hash": "e22061fdb47e16e7",
+  "seeds": {},
+  "parameters": {},
+  "outputs": {
+    "surrogate_log10_retention_time_s": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_log10_retention_time_s_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_log10_retention_time_s_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_log10_retention_time_s_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_log10_retention_time_s_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_log10_retention_time_s_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 64.17714285714288,
+        "p_value": 9.297665351405522e-09,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9873406593406597
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "surrogate_read_delay_ns": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_read_delay_ns_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_read_delay_ns_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_read_delay_ns_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_read_delay_ns_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_read_delay_ns_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 64.68,
+        "p_value": 7.536679996678027e-09,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9950769230769232
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "surrogate_log10_total_power_nw": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_log10_total_power_nw_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_log10_total_power_nw_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_log10_total_power_nw_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_log10_total_power_nw_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_log10_total_power_nw_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 64.17714285714288,
+        "p_value": 9.297665351405522e-09,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9873406593406597
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "surrogate_read_margin_mv": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_read_margin_mv_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_read_margin_mv_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_read_margin_mv_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_read_margin_mv_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_read_margin_mv_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 64.61142857142858,
+        "p_value": 7.755745185757682e-09,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9940219780219781
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "surrogate_write_efficiency": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_write_efficiency_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_write_efficiency_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_write_efficiency_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_write_efficiency_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_write_efficiency_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 64.72571428571428,
+        "p_value": 7.3940614240061235e-09,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9957802197802196
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "surrogate_energy_per_access_fj": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\surrogate_energy_per_access_fj_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\surrogate_energy_per_access_fj_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\surrogate_energy_per_access_fj_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\surrogate_energy_per_access_fj_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\surrogate_energy_per_access_fj_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 63.94857142857143,
+        "p_value": 1.0227766935064706e-08,
+        "n_blocks": 5,
+        "k_treatments": 14,
+        "kendalls_w": 0.9838241758241758
+      },
+      "critical_difference": 8.873849897310638
+    },
+    "optimizer_hypervolume": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_hypervolume_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_hypervolume_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_hypervolume_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_hypervolume_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_hypervolume_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 32.714285714285694,
+        "p_value": 4.28839753562548e-06,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.9346938775510198
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_igd": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_igd_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_igd_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_igd_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_igd_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_igd_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 28.79591836734693,
+        "p_value": 2.5425953078447944e-05,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.8227405247813409
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_igd_plus": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_igd_plus_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_igd_plus_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_igd_plus_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_igd_plus_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_igd_plus_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 30.755102040816325,
+        "p_value": 1.0470012926402537e-05,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.8787172011661807
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_spacing": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_spacing_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_spacing_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_spacing_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_spacing_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_spacing_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 32.14285714285714,
+        "p_value": 5.566527639531628e-06,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.9183673469387754
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_spread": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_spread_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_spread_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_spread_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_spread_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_spread_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 26.83673469387753,
+        "p_value": 6.137358244641404e-05,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.7667638483965009
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_epsilon": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_epsilon_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_epsilon_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_epsilon_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_epsilon_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_epsilon_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 26.428571428571416,
+        "p_value": 7.367978720129616e-05,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.7551020408163261
+      },
+      "critical_difference": 2.85
+    },
+    "optimizer_n_solutions": {
+      "descriptives": "E:\\DRAM\\results\\statistics\\optimizer_n_solutions_descriptives.csv",
+      "normality": "E:\\DRAM\\results\\statistics\\optimizer_n_solutions_normality.csv",
+      "posthoc": "E:\\DRAM\\results\\statistics\\optimizer_n_solutions_posthoc.csv",
+      "pairwise": "E:\\DRAM\\results\\statistics\\optimizer_n_solutions_pairwise.csv",
+      "ranks": "E:\\DRAM\\results\\statistics\\optimizer_n_solutions_ranks.csv",
+      "omnibus": {
+        "test": "friedman",
+        "statistic": 33.80658436213991,
+        "p_value": 2.6016913434579658e-06,
+        "n_blocks": 7,
+        "k_treatments": 6,
+        "kendalls_w": 0.9659024103468545
+      },
+      "critical_difference": 2.85
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

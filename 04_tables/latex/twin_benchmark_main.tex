@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Digital-twin evaluation latency and speed-up over SPICE.}
+\label{tab:twin_benchmark_main}
+\footnotesize
+\begin{tabular}{rrrrrr}
+\toprule
+batch\_size & total\_ms & ms\_per\_design & designs\_per\_second & spice\_ms\_per\_design & speedup\_vs\_spice \\
+\midrule
+1 & 116.3 & 116.3 & 8.600 & 1202 & 10.30 \\
+10 & 64.25 & 6.425 & 155.6 & 1202 & 187.1 \\
+100 & 73.71 & 0.7371 & 1357 & 1202 & 1631 \\
+1000 & 92.95 & 0.09295 & 10758 & 1202 & 12933 \\
+10000 & 324.8 & 0.03248 & 30786 & 1202 & 37009 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize The SPICE reference is the mean simulation time actually recorded while generating the training dataset.
+\end{table}

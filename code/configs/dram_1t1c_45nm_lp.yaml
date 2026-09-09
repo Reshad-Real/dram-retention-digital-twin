@@ -1,0 +1,240 @@
+# =====================================================================
+#  Reference architecture: 1T1C DRAM cell in a 45 nm low-power bulk CMOS
+#  process (PTM BSIM4, level 54).
+#
+#  This file is the *only* thing that has to change to retarget the whole
+#  framework to a different DRAM architecture or technology node.
+# =====================================================================
+extends: base.yaml
+
+meta:
+  name: dram_1t1c_45nm_lp
+  title: 1T1C DRAM cell, 45 nm PTM low-power bulk CMOS
+  description: >-
+    Single-transistor / single-capacitor DRAM bit cell with a lumped bitline
+    pair, boosted precharge-equalise circuit, CMOS write driver and a
+    cross-coupled voltage-mode sense amplifier.
+  cell_type: 1T1C
+  author: dramdt framework
+
+# ---------------------------------------------------------------------
+technology:
+  node_nm: 45
+  flavour: LP
+  model_card: 45nm_LP.pm          # resolved inside data/spice_models/
+  corner_dir: corners
+  nmos_model: nmos
+  pmos_model: pmos
+  vdd_nominal: 1.1
+  citation: >-
+    W. Zhao and Y. Cao, "New generation of predictive technology model for
+    sub-45nm early design exploration", IEEE Trans. Electron Devices, 53(11),
+    2816-2823, 2006.  Model cards distributed by the Predictive Technology
+    Model (PTM) project.
+
+  # Local (device-to-device) mismatch, Pelgrom model.
+  mismatch:
+    avt_v_um: 3.5e-3              # V*um
+    au0_pct_um: 1.0               # %*um (reported; not applied to u0 per-instance)
+
+  # First-order corner synthesis from the typical PTM card.  `dvth0` is a
+  # magnitude shift in volts (positive == slower device).
+  corners:
+    TT:
+      description: Typical NMOS / typical PMOS (the unmodified PTM card).
+    SS:
+      description: Slow NMOS / slow PMOS.
+      nmos_dvth0: 0.045
+      pmos_dvth0: 0.045
+      nmos_u0_scale: 0.95
+      pmos_u0_scale: 0.95
+      nmos_tox_scale: 1.02
+      pmos_tox_scale: 1.02
+    FF:
+      description: Fast NMOS / fast PMOS.
+      nmos_dvth0: -0.045
+      pmos_dvth0: -0.045
+      nmos_u0_scale: 1.05
+      pmos_u0_scale: 1.05
+      nmos_tox_scale: 0.98
+      pmos_tox_scale: 0.98
+    SF:
+      description: Slow NMOS / fast PMOS.
+      nmos_dvth0: 0.045
+      pmos_dvth0: -0.045
+      nmos_u0_scale: 0.95
+      pmos_u0_scale: 1.05
+    FS:
+      description: Fast NMOS / slow PMOS.
+      nmos_dvth0: -0.045
+      pmos_dvth0: 0.045
+      nmos_u0_scale: 1.05
+      pmos_u0_scale: 0.95
+
+# ---------------------------------------------------------------------
+# Fixed topology parameters (defaults for anything not sampled).
+# ---------------------------------------------------------------------
+architecture:
+  ldiff: 112.5e-9                 # source/drain diffusion extension (2.5 * Lmin)
+  cells_per_bitline: 512          # documented provenance of the Cbl/Cs ratio range
+  vplate_ratio: 0.5
+  # defaults used when a variable is pinned rather than sampled
+  vwl_low: 0.0
+  rdiel: 1.0e15
+  wpc: 180.0e-9
+  wwr: 360.0e-9
+  lsa: 45.0e-9
+  temperature_c: 27.0
+  corner: TT
+
+# ---------------------------------------------------------------------
+# Stage 1 design space (block 1 of the proposed method).
+# `derived` expressions are evaluated after decoding, in declaration order.
+# ---------------------------------------------------------------------
+design_space:
+  constants:
+    vplate_ratio: 0.5
+    wpc: 180.0e-9
+    wwr: 360.0e-9
+    lsa: 45.0e-9
+    ldiff: 112.5e-9
+    rdiel: 1.0e15
+
+  variables:
+    vdd:
+      low: 0.70
+      high: 1.30
+      unit: V
+      group: design
+      description: Core supply voltage.
+    vwl_boost:
+      # The access device must pass a full '1', which needs VPP > VDD + Vth,eff.
+      # With Vth0 ~ 0.62 V plus body effect at this node, Vth,eff reaches
+      # ~0.85 V, so the upper bound is set well above it: the range therefore
+      # spans both the write-limited and the fully-writing regimes.
+      low: 0.30
+      high: 1.20
+      unit: V
+      group: design
+      description: Wordline overdrive above VDD (VPP - VDD).
+    vwl_low:
+      low: -0.40
+      high: 0.00
+      unit: V
+      group: design
+      description: Wordline low level; negative values suppress GIDL/subthreshold leakage.
+    vblpre_ratio:
+      low: 0.35
+      high: 0.65
+      unit: "-"
+      group: design
+      description: Bitline precharge level as a fraction of VDD.
+    cs:
+      low: 5.0e-15
+      high: 40.0e-15
+      unit: F
+      scale: log
+      group: design
+      description: Storage capacitance.
+    cbl_ratio:
+      low: 2.0
+      high: 12.0
+      unit: "-"
+      group: design
+      description: Bitline-to-storage capacitance ratio (sets the charge-sharing gain).
+    wacc:
+      low: 60.0e-9
+      high: 220.0e-9
+      unit: m
+      group: design
+      description: Access-transistor width.
+    lacc:
+      low: 45.0e-9
+      high: 120.0e-9
+      unit: m
+      group: design
+      description: Access-transistor channel length.
+    wsan:
+      low: 90.0e-9
+      high: 540.0e-9
+      unit: m
+      scale: log
+      group: design
+      description: Sense-amplifier NMOS latch width.
+    wsap_ratio:
+      low: 1.0
+      high: 3.0
+      unit: "-"
+      group: design
+      description: Sense-amplifier PMOS/NMOS width ratio.
+    wen_ratio:
+      low: 1.0
+      high: 4.0
+      unit: "-"
+      group: design
+      description: Sense-amplifier enable-device width relative to the latch NMOS.
+    t_write_pulse:
+      low: 1.0e-9
+      high: 10.0e-9
+      unit: s
+      group: design
+      description: Wordline pulse width during the write operation.
+    t_sense_delay:
+      low: 1.0e-9
+      high: 10.0e-9
+      unit: s
+      group: design
+      description: Charge-sharing time before the sense amplifier fires.
+    temperature_c:
+      low: -40.0
+      high: 125.0
+      unit: degC
+      group: environment
+      description: Junction temperature.
+    corner:
+      kind: categorical
+      categories: [TT, SS, FF, SF, FS]
+      group: process
+      description: Process corner applied to the BSIM4 model card.
+
+  derived:
+    vwl_high: "vdd + vwl_boost"
+    vblpre: "vdd * vblpre_ratio"
+    vplate: "vdd * vplate_ratio"
+    cbl: "cs * cbl_ratio"
+    wsap: "wsan * wsap_ratio"
+    wen_n: "wsan * wen_ratio"
+    wen_p: "wsan * wen_ratio * 2.0"
+
+# ---------------------------------------------------------------------
+# Stage 5 objectives (block 5 of the proposed method).
+# ---------------------------------------------------------------------
+objectives:
+  - name: retention_time_s
+    direction: maximize
+    transform: log10
+    label: "Retention time (s)"
+  - name: read_delay_ns
+    direction: minimize
+    label: "Read delay (ns)"
+  - name: total_power_nw
+    direction: minimize
+    transform: log10
+    label: "Total power (nW)"
+  - name: read_margin_mv
+    direction: maximize
+    label: "Read margin (mV)"
+
+constraints:
+  - name: read_success
+    type: equals
+    value: true
+    description: The sense amplifier must resolve the stored '1'.
+  - name: write_success
+    type: equals
+    value: true
+    description: The cell must be charged to at least 85 % of VDD.
+  - name: read_margin_mv
+    type: min
+    value: 25.0
+    description: Bitline differential must exceed the sense-amplifier offset.

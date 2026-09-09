@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Global SHAP feature importance for write_efficiency.}
+\label{tab:xai_shap_importance_write_efficiency}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+feature & mean\_abs\_shap & mean\_shap & importance\_pct \\
+\midrule
+num\_\_vwl\_overdrive & 0.06419 & -0.01001 & 15.95 \\
+cat\_\_corner\_FF & 0.04162 & 0.04162 & 10.34 \\
+cat\_\_corner\_FS & 0.03431 & 0.03431 & 8.529 \\
+num\_\_t\_write\_pulse & 0.03140 & -0.02100 & 7.805 \\
+cat\_\_corner\_TT & 0.02891 & 0.02891 & 7.187 \\
+cat\_\_corner\_SF & 0.02805 & 0.02805 & 6.972 \\
+num\_\_vwl\_boost & 0.01856 & -0.003491 & 4.613 \\
+cat\_\_corner\_SS & 0.01753 & 0.01753 & 4.356 \\
+num\_\_wsan & 0.01717 & -0.001959 & 4.268 \\
+num\_\_cs & 0.01715 & 3.692e-4 & 4.262 \\
+num\_\_sa\_aspect & 0.01609 & 0.002420 & 3.999 \\
+num\_\_vdd & 0.01020 & -0.005333 & 2.535 \\
+num\_\_temperature\_k & 0.009582 & 0.001285 & 2.382 \\
+num\_\_cbl\_ratio & 0.009571 & -7.334e-4 & 2.379 \\
+num\_\_charge\_share\_ratio & 0.007639 & 0.001422 & 1.899 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Explainer: PermutationExplainer (model-agnostic).
+\end{table}

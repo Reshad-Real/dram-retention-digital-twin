@@ -1,0 +1,30 @@
+\begin{algorithm}[!t]
+\caption{Configuration-driven DRAM design-space sampling}
+\label{alg:configuration_driven_dram_design_space_sampling}
+\begin{algorithmic}[1]
+\Require design-space specification $\mathcal{D}=\{(v_i,\ell_i,u_i,s_i,k_i)\}_{i=1}^{d}$
+\Require derived-quantity expressions $\mathcal{E}$, constants $\mathcal{K}$
+\Require sample count $N$, master seed $\sigma$
+\Ensure physical design points $\{\mathbf{p}^{(n)}\}_{n=1}^{N}$
+    \State $\sigma_{\text{doe}} \leftarrow \textsc{DeriveSeed}(\sigma, \text{`design'})$
+    \State $U \leftarrow \textsc{LatinHypercube}(N, d, \sigma_{\text{doe}})$\Comment{one sample per stratum in every 1-D projection}
+    \State record $\textsc{Discrepancy}(U)$ and $\min_{a\neq b}\lVert u_a-u_b\rVert$\Comment{design quality is measured, not assumed}
+    \For{$n \leftarrow 1$ \KwTo $N$}
+        \State $\mathbf{p}^{(n)} \leftarrow \mathcal{K}$
+        \For{$i \leftarrow 1$ \KwTo $d$}
+            \uIf{$k_i$ is categorical}
+                \State $p^{(n)}_i \leftarrow c_{\lfloor U_{ni}\,|C_i| \rfloor}$
+            \uElseIf{$s_i = \log$}
+                \State $p^{(n)}_i \leftarrow \exp\!\big(\ln \ell_i + U_{ni}(\ln u_i - \ln \ell_i)\big)$
+            \Else
+                \State $p^{(n)}_i \leftarrow \ell_i + U_{ni}(u_i-\ell_i)$
+            \EndIf
+        \EndFor
+        \For{$e \in \mathcal{E}$ \textbf{in declaration order}}
+            \State $\mathbf{p}^{(n)}[\text{lhs}(e)] \leftarrow \textsc{Eval}(e, \mathbf{p}^{(n)})$
+        \EndFor
+    \EndFor
+    \Return $\{\mathbf{p}^{(n)}\}$
+\end{algorithmic}
+\end{algorithm}
+% Note: Nothing about the DRAM architecture is hard-coded: retargeting the framework means supplying a different $\mathcal{D}$.

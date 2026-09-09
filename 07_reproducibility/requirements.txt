@@ -1,0 +1,35 @@
+# dramdt -- pinned-by-minimum runtime requirements.
+# The exact versions used for the archived results are recorded in
+# logs/manifest_*.json and in supplementary/environment_lock.txt.
+
+# --- numerics / data ---------------------------------------------------
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+openpyxl>=3.1
+XlsxWriter>=3.1
+PyYAML>=6.0
+joblib>=1.3
+tqdm>=4.66
+
+# --- circuit simulation ------------------------------------------------
+PySpice>=1.5
+# NGSpice itself is a native dependency; scripts/00_setup_environment.py
+# vendors a copy into tools/ or you may install it from your package manager.
+
+# --- machine learning --------------------------------------------------
+scikit-learn>=1.4
+xgboost>=2.0
+lightgbm>=4.1
+catboost>=1.2
+optuna>=3.5
+shap>=0.44
+
+# --- optimisation ------------------------------------------------------
+pymoo>=0.6.1
+
+# --- visualisation -----------------------------------------------------
+matplotlib>=3.8
+
+# --- development -------------------------------------------------------
+pytest>=8.0

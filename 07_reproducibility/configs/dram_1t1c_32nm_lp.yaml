@@ -1,0 +1,47 @@
+# =====================================================================
+#  1T1C DRAM cell in a 32 nm PTM low-power bulk CMOS process.
+#
+#  This file exists to demonstrate that retargeting the framework to a
+#  different technology node requires no code change: only the device card,
+#  the geometry floor and the voltage/capacitance ranges move.
+# =====================================================================
+extends: dram_1t1c_45nm_lp.yaml
+
+meta:
+  name: dram_1t1c_32nm_lp
+  title: 1T1C DRAM cell, 32 nm PTM low-power bulk CMOS
+  description: >-
+    Same topology as the 45 nm reference, scaled to the 32 nm PTM low-power
+    node: lower nominal supply, smaller minimum geometry and a proportionally
+    smaller storage capacitance range.
+
+technology:
+  node_nm: 32
+  model_card: 32nm_LP.pm
+  vdd_nominal: 1.0
+  mismatch:
+    avt_v_um: 3.2e-3          # mismatch improves slowly with scaling
+
+architecture:
+  ldiff: 80.0e-9              # 2.5 x Lmin
+  lsa: 32.0e-9
+  wpc: 128.0e-9
+  wwr: 256.0e-9
+
+design_space:
+  constants:
+    lsa: 32.0e-9
+    wpc: 128.0e-9
+    wwr: 256.0e-9
+    ldiff: 80.0e-9
+  variables:
+    vdd:   { low: 0.65, high: 1.20, unit: V, group: design,
+             description: Core supply voltage. }
+    cs:    { low: 4.0e-15, high: 30.0e-15, unit: F, scale: log, group: design,
+             description: Storage capacitance. }
+    wacc:  { low: 45.0e-9, high: 160.0e-9, unit: m, group: design,
+             description: Access-transistor width. }
+    lacc:  { low: 32.0e-9, high: 90.0e-9, unit: m, group: design,
+             description: Access-transistor channel length. }
+    wsan:  { low: 64.0e-9, high: 400.0e-9, unit: m, scale: log, group: design,
+             description: Sense-amplifier NMOS latch width. }

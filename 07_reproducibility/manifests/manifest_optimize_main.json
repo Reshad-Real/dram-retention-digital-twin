@@ -1,0 +1,164 @@
+{
+  "stage": "optimize_main",
+  "started_utc": "2026-07-23T11:28:29.786583+00:00",
+  "finished_utc": "2026-07-23T12:55:20.561823+00:00",
+  "duration_s": 5210.688933300029,
+  "status": "success",
+  "config_hash": "e22061fdb47e16e7",
+  "seeds": {
+    "master_seed": 20260723,
+    "python_random": true,
+    "numpy_legacy": true,
+    "PYTHONHASHSEED": "20260723"
+  },
+  "parameters": {
+    "problem": {
+      "n_var": 13,
+      "variables": [
+        "vdd",
+        "vwl_boost",
+        "vwl_low",
+        "vblpre_ratio",
+        "cs",
+        "cbl_ratio",
+        "wacc",
+        "lacc",
+        "wsan",
+        "wsap_ratio",
+        "wen_ratio",
+        "t_write_pulse",
+        "t_sense_delay"
+      ],
+      "n_obj": 4,
+      "objectives": [
+        "maximize retention_time_s",
+        "minimize read_delay_ns",
+        "minimize total_power_nw",
+        "maximize read_margin_mv"
+      ],
+      "n_constr": 3,
+      "constraints": [
+        "read_margin_mv min 25.0",
+        "write_efficiency min 0.85",
+        "read_delay_ns max 30.0"
+      ],
+      "condition_mode": "worst_case",
+      "conditions": [
+        {
+          "temperature_c": 27.0,
+          "corner": "TT"
+        },
+        {
+          "temperature_c": 85.0,
+          "corner": "SS"
+        },
+        {
+          "temperature_c": 125.0,
+          "corner": "SS"
+        },
+        {
+          "temperature_c": 85.0,
+          "corner": "FF"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "settings": {
+      "population_size": 100,
+      "n_generations": 40,
+      "evaluation_budget": 4000,
+      "n_runs": 7,
+      "algorithms": [
+        "nsga2",
+        "nsga3",
+        "moead",
+        "de",
+        "pso",
+        "bayesian"
+      ],
+      "constraint_penalty": 1000.0,
+      "scalarized_weight_vectors": 16,
+      "n_var": 13,
+      "variables": [
+        "vdd",
+        "vwl_boost",
+        "vwl_low",
+        "vblpre_ratio",
+        "cs",
+        "cbl_ratio",
+        "wacc",
+        "lacc",
+        "wsan",
+        "wsap_ratio",
+        "wen_ratio",
+        "t_write_pulse",
+        "t_sense_delay"
+      ],
+      "n_obj": 4,
+      "objectives": [
+        "maximize retention_time_s",
+        "minimize read_delay_ns",
+        "minimize total_power_nw",
+        "maximize read_margin_mv"
+      ],
+      "n_constr": 3,
+      "constraints": [
+        "read_margin_mv min 25.0",
+        "write_efficiency min 0.85",
+        "read_delay_ns max 30.0"
+      ],
+      "condition_mode": "worst_case",
+      "conditions": [
+        {
+          "temperature_c": 27.0,
+          "corner": "TT"
+        },
+        {
+          "temperature_c": 85.0,
+          "corner": "SS"
+        },
+        {
+          "temperature_c": 125.0,
+          "corner": "SS"
+        },
+        {
+          "temperature_c": 85.0,
+          "corner": "FF"
+        }
+      ]
+    },
+    "best_algorithm": "nsga2",
+    "n_pareto": 1702,
+    "verification_median_error_pct": {
+      "retention_time_s_rel_error_pct": 46.334499213575256,
+      "read_delay_ns_rel_error_pct": 30.821002527246304,
+      "total_power_nw_rel_error_pct": 10.313039295367378,
+      "read_margin_mv_rel_error_pct": 3.0413215511343923
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

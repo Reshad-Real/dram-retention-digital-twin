@@ -1,0 +1,7 @@
+design_id,twin_yield_pct,spice_yield_pct,n_spice_trials,absolute_difference_pp
+knee_0,100.0,100.0,200.0,0.0
+weighted_1,100.0,100.0,200.0,0.0
+best_retention_time_s_2,100.0,100.0,200.0,0.0
+best_read_delay_ns_3,100.0,100.0,200.0,0.0
+best_total_power_nw_4,100.0,100.0,200.0,0.0
+best_read_margin_mv_5,100.0,100.0,200.0,0.0

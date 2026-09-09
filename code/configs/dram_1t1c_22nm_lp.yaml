@@ -1,0 +1,44 @@
+# =====================================================================
+#  1T1C DRAM cell in a 22 nm PTM low-power bulk CMOS process.
+#  See dram_1t1c_32nm_lp.yaml -- same retargeting pattern.
+# =====================================================================
+extends: dram_1t1c_45nm_lp.yaml
+
+meta:
+  name: dram_1t1c_22nm_lp
+  title: 1T1C DRAM cell, 22 nm PTM low-power bulk CMOS
+  description: >-
+    Same topology as the 45 nm reference, scaled to the 22 nm PTM low-power
+    node.  At this node the storage capacitance range is the binding constraint
+    on read margin, which the sensitivity analysis is expected to reflect.
+
+technology:
+  node_nm: 22
+  model_card: 22nm_LP.pm
+  vdd_nominal: 0.95
+  mismatch:
+    avt_v_um: 2.8e-3
+
+architecture:
+  ldiff: 55.0e-9
+  lsa: 22.0e-9
+  wpc: 88.0e-9
+  wwr: 176.0e-9
+
+design_space:
+  constants:
+    lsa: 22.0e-9
+    wpc: 88.0e-9
+    wwr: 176.0e-9
+    ldiff: 55.0e-9
+  variables:
+    vdd:   { low: 0.60, high: 1.10, unit: V, group: design,
+             description: Core supply voltage. }
+    cs:    { low: 3.0e-15, high: 22.0e-15, unit: F, scale: log, group: design,
+             description: Storage capacitance. }
+    wacc:  { low: 30.0e-9, high: 120.0e-9, unit: m, group: design,
+             description: Access-transistor width. }
+    lacc:  { low: 22.0e-9, high: 70.0e-9, unit: m, group: design,
+             description: Access-transistor channel length. }
+    wsan:  { low: 44.0e-9, high: 300.0e-9, unit: m, scale: log, group: design,
+             description: Sense-amplifier NMOS latch width. }

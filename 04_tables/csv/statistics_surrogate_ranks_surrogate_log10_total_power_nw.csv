@@ -1,0 +1,15 @@
+group,mean_rank,rank_position
+mlp_deep,1.0,1
+catboost,2.0,2
+lightgbm,3.0,3
+xgboost,4.8,4
+hist_gbr,5.0,5
+mlp,5.2,6
+poly2_ridge,7.0,7
+gpr,8.0,8
+random_forest,9.4,9
+svr_rbf,9.8,10
+extra_trees,10.8,11
+ridge,12.0,12
+elasticnet,13.0,13
+knn,14.0,14

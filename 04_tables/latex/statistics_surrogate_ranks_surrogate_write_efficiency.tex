@@ -1,0 +1,27 @@
+\begin{table}[!t]
+\centering
+\caption{Mean Friedman ranks of the surrogate models for write_efficiency (lower is better).}
+\label{tab:statistics_surrogate_ranks_surrogate_write_efficiency}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+group & mean\_rank & rank\_position \\
+\midrule
+mlp\_deep & 1.200 & 1 \\
+mlp & 2.200 & 2 \\
+catboost & 2.600 & 3 \\
+lightgbm & 4 & 4 \\
+hist\_gbr & 5 & 5 \\
+xgboost & 6 & 6 \\
+gpr & 7 & 7 \\
+poly2\_ridge & 8 & 8 \\
+svr\_rbf & 9 & 9 \\
+random\_forest & 10 & 10 \\
+extra\_trees & 11 & 11 \\
+knn & 12 & 12 \\
+ridge & 13 & 13 \\
+elasticnet & 14 & 14 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Friedman p = 7.394e-09; Nemenyi critical difference = 8.874 at alpha = 0.05.
+\end{table}

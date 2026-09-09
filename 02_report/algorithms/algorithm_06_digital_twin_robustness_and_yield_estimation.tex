@@ -1,0 +1,18 @@
+\begin{algorithm}[!t]
+\caption{Digital-twin robustness and yield estimation}
+\label{alg:digital_twin_robustness_and_yield_estimation}
+\begin{algorithmic}[1]
+\Require design $\mathbf{x}^\star$, process sigmas $\{\varsigma_p\}$
+\Require specification limits $\{(y_s, \tau_s, \text{sense})\}$, trials $M$
+\Ensure joint yield $Y$, per-spec yields, worst-case corner, SPICE check
+    \For{$m \leftarrow 1$ \KwTo $M$}
+        \State $\mathbf{x}^{(m)} \leftarrow \mathbf{x}^\star \odot (1 + \boldsymbol{\varepsilon}),\ \varepsilon_p\sim\mathcal{N}(0,\varsigma_p^2)$
+    \EndFor
+    \State $\mathbf{Y} \leftarrow \mathcal{F}(\{\mathbf{x}^{(m)}\})$\Comment{twin: $M$ evaluations in milliseconds}
+    \State $Y \leftarrow \frac{1}{M}\big|\{m : \forall s,\ y_s^{(m)} \text{ meets } \tau_s\}\big|$\Comment{joint, not the product of marginals}
+    \State $\mathcal{G} \leftarrow$ evaluate $\mathbf{x}^\star$ over corner $\times$ temperature grid; record worst case per spec
+    \State re-simulate a random subset of $\{\mathbf{x}^{(m)}\}$ in NGSpice; report $|Y_{\text{twin}} - Y_{\text{SPICE}}|$
+    \Return $Y$, per-spec yields, $\mathcal{G}$, agreement
+\end{algorithmic}
+\end{algorithm}
+% Note: A robustness claim that has not been checked against the simulator is not reported as a result.

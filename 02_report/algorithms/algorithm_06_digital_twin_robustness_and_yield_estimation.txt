@@ -1,0 +1,17 @@
+Algorithm 6: Digital-twin robustness and yield estimation
+Implemented by: dramdt.robustness.analysis.RobustnessAnalyzer
+
+Require: design x^*, process sigmas sigma_p
+Require: specification limits (y_s, tau_s, sense), trials M
+Ensure:  joint yield Y, per-spec yields, worst-case corner, SPICE check
+
+  1: for m <- 1 to M
+  2:   x^(m) <- x^* * (1 + eps),\ eps_p N(0,sigma_p^2)
+  3: end for
+  4: Y <- F(x^(m)) // twin: M evaluations in milliseconds
+  5: Y <- (1)/(M)|m : for all s,\ y_s^(m) meets tau_s| // joint, not the product of marginals
+  6: G <- evaluate x^* over corner x temperature grid; record worst case per spec
+  7: re-simulate a random subset of x^(m) in NGSpice; report |Y_twin - Y_SPICE|
+  8: return Y, per-spec yields, G, agreement
+
+Note: A robustness claim that has not been checked against the simulator is not reported as a result.

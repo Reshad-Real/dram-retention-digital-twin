@@ -1,0 +1,21 @@
+Algorithm 4: Cross-validated surrogate selection
+Implemented by: dramdt.surrogate.train.SurrogateTrainer
+
+Require: dataset D with a fixed train/val/test split
+Require: model zoo Z, folds K, primary metric mu
+Ensure:  per-target best surrogate f^*_y and its held-out score
+
+  1: for each target y
+  2:   D_y <- (x,y) in D : y observed // drop per target, never globally
+  3:   for each model m in Z
+  4:     for k <- 1 to K
+  5:       fit m on D_y^dev\ fold_k; score on fold_k
+  6:       retain the fold score // needed by the statistical tests
+  7:     end for
+  8:     refit m on all of D_y^dev; score once on D_y^test
+  9:   end for
+ 10:   f^*_y <- _m mean mu_cv(m)
+ 11: end for
+ 12: return f^*_y
+
+Note: The test split is touched exactly once per model and never participates in selection or tuning.

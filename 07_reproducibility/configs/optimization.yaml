@@ -1,0 +1,119 @@
+# =====================================================================
+#  Stage 5 -- multi-objective optimisation
+#      load_config("dram_1t1c_45nm_lp.yaml", "surrogate.yaml", "optimization.yaml")
+# =====================================================================
+
+optimization:
+  # ---- decision variables -------------------------------------------
+  # Only controllable design knobs.  Temperature and process corner are
+  # operating *conditions* and appear under `conditions` below.
+  variables:
+    - vdd
+    - vwl_boost
+    - vwl_low
+    - vblpre_ratio
+    - cs
+    - cbl_ratio
+    - wacc
+    - lacc
+    - wsan
+    - wsap_ratio
+    - wen_ratio
+    - t_write_pulse
+    - t_sense_delay
+
+  # ---- robustness ----------------------------------------------------
+  # worst_case: every objective and constraint is reduced pessimistically over
+  # the conditions below, so a design is only as good as its worst corner.
+  condition_mode: worst_case
+  conditions:
+    - {temperature_c: 27.0,  corner: TT}
+    - {temperature_c: 85.0,  corner: SS}
+    - {temperature_c: 125.0, corner: SS}
+    - {temperature_c: 85.0,  corner: FF}
+
+  # ---- feasibility ---------------------------------------------------
+  constraints:
+    read_margin_mv:
+      min: 25.0
+      description: Bitline differential must exceed the sense-amplifier offset.
+    write_efficiency:
+      min: 0.85
+      description: The cell must charge to at least 85 % of VDD.
+    read_delay_ns:
+      max: 30.0
+      description: Read access must complete inside the timing budget.
+
+  # ---- budget (identical for every algorithm) -------------------------
+  # The budget is denominated in candidate *designs*; each design costs one
+  # twin call per operating condition, batched into a single prediction.
+  # population_size x n_generations is chosen so that the two serially
+  # evaluating methods (MOEA/D and the Optuna TPE sampler, whose per-trial cost
+  # is dominated by the sampler itself rather than by the twin) finish in a
+  # comparable wall-clock time to the population-based ones.
+  population_size: 100
+  n_generations: 40
+  n_runs: 7                       # independent repetitions -> distributions
+  algorithms: [nsga2, nsga3, moead, de, pso, bayesian]
+
+  # ---- algorithm settings --------------------------------------------
+  crossover_prob: 0.9
+  crossover_eta: 15
+  mutation_eta: 20
+  moead_neighbors: 20
+  moead_prob_neighbor: 0.9
+  de_variant: "DE/rand/1/bin"
+  de_cr: 0.9
+  de_f: 0.8
+  pso_w: 0.7
+  pso_c1: 1.5
+  pso_c2: 1.5
+  pso_adaptive: true
+  scalarized_weight_vectors: 16   # Tchebycheff subproblems for DE / PSO
+  ideal_point_probe: 256          # designs charged for the ideal-point estimate
+  bayesian_trials: null            # null == use the shared budget
+  bayesian_startup: 48
+  constraint_penalty: 1000.0
+  hv_reference_margin: 0.1
+
+  # ---- knee-point / design selection ----------------------------------
+  selection:
+    method: knee                  # knee | weighted | closest_to_ideal
+    weights: [0.30, 0.25, 0.30, 0.15]   # retention, read delay, power, margin
+    n_report: 12                  # representative designs written to the tables
+
+# ---------------------------------------------------------------------
+# Stage 7b -- robustness analysis of the selected designs
+# ---------------------------------------------------------------------
+robustness:
+  monte_carlo:
+    n_trials: 1000               # mismatch trials per design (surrogate-driven)
+    spice_verification_trials: 200   # trials re-verified in NGSpice
+    parameter_sigma:             # relative process sigma on physical parameters
+      cs: 0.05
+      cbl: 0.05
+      wacc: 0.04
+      lacc: 0.04
+      wsan: 0.04
+      vdd: 0.02
+      vwl_high: 0.02
+      vblpre: 0.02
+  corner_sweep:
+    corners: [TT, SS, FF, SF, FS]
+    temperatures_c: [-40, 0, 27, 55, 85, 105, 125]
+  yield_thresholds:
+    read_margin_mv: 25.0
+    write_efficiency: 0.85
+    read_delay_ns: 30.0
+    retention_time_s: 0.064      # 64 ms JEDEC-style refresh budget
+
+# ---------------------------------------------------------------------
+# Stage 8 -- statistical validation
+# ---------------------------------------------------------------------
+statistics:
+  alpha: 0.05
+  bootstrap_iterations: 10000
+  posthoc: nemenyi               # nemenyi | holm | bonferroni
+  effect_size: cliffs_delta
+  normality_test: shapiro
+  paired_test: wilcoxon

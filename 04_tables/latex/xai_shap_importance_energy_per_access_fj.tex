@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Global SHAP feature importance for energy_per_access_fj.}
+\label{tab:xai_shap_importance_energy_per_access_fj}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+feature & mean\_abs\_shap & mean\_shap & importance\_pct \\
+\midrule
+num\_\_vdd & 13.27 & -2.553 & 14.14 \\
+num\_\_charge\_share\_ratio & 11.16 & 1.098 & 11.89 \\
+num\_\_signal\_charge\_c & 8.621 & -2.404 & 9.183 \\
+num\_\_stored\_charge\_c & 7.624 & -1.881 & 8.120 \\
+num\_\_sa\_drive\_ratio & 7.128 & 0.3301 & 7.592 \\
+num\_\_vblpre\_ratio & 4.328 & -0.4405 & 4.609 \\
+num\_\_vgs\_retention & 3.930 & 0.5188 & 4.186 \\
+num\_\_sa\_aspect & 3.659 & -0.3680 & 3.897 \\
+num\_\_wsan & 3.590 & -0.3003 & 3.824 \\
+num\_\_inv\_thermal\_v & 3.386 & 0.04383 & 3.606 \\
+num\_\_vwl\_low & 2.667 & -0.4056 & 2.840 \\
+num\_\_temperature\_c & 2.371 & 0.08933 & 2.526 \\
+num\_\_cs & 2.263 & 0.02490 & 2.410 \\
+cat\_\_corner\_FF & 2.190 & 2.190 & 2.332 \\
+cat\_\_corner\_FS & 2.072 & 2.027 & 2.207 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Explainer: PermutationExplainer (model-agnostic).
+\end{table}

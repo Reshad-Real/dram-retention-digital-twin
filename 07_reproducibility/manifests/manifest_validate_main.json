@@ -1,0 +1,127 @@
+{
+  "stage": "validate_spice_main",
+  "started_utc": "2026-07-23T13:26:56.782679+00:00",
+  "finished_utc": "2026-07-23T13:27:27.431892+00:00",
+  "duration_s": 30.596131499973126,
+  "status": "success",
+  "config_hash": "954478d4cad7f9d6",
+  "seeds": {},
+  "parameters": {
+    "config": [
+      "E:\\DRAM\\configs\\base.yaml",
+      "E:\\DRAM\\configs\\dram_1t1c_45nm_lp.yaml"
+    ],
+    "n_points": 120
+  },
+  "outputs": {
+    "charge_sharing": {
+      "n": 120,
+      "median_rel_error_pct": 3.8024825531943183,
+      "p95_rel_error_pct": 17.99194521291774
+    },
+    "retention_model": {
+      "n_pairs": 18.0,
+      "pearson_r_log10": 0.9999813114320898,
+      "spearman_rho": 1.0,
+      "median_abs_log10_error": 0.009785770829811913,
+      "mean_log10_error": -0.011603376058619809,
+      "geometric_mean_ratio": 0.9736360010520403,
+      "p90_abs_log10_error": 0.02026273620543717,
+      "within_factor_2_pct": 100.0,
+      "within_factor_10_pct": 100.0
+    },
+    "solver_convergence": [
+      {
+        "setting": "50 ps / GEAR",
+        "ms_per_sample": 63.0,
+        "speedup_vs_reference": 1.693,
+        "read_margin_mv_median_err_pct": 0.0091,
+        "read_margin_mv_p95_err_pct": 0.1449,
+        "read_delay_ns_median_err_pct": 0.0153,
+        "read_delay_ns_p95_err_pct": 0.242,
+        "write_delay_ns_median_err_pct": 0.152,
+        "write_delay_ns_p95_err_pct": 0.7592,
+        "v_sn_written_v_median_err_pct": 0.0038,
+        "v_sn_written_v_p95_err_pct": 0.042,
+        "retention_time_s_median_err_pct": 0.0018,
+        "retention_time_s_p95_err_pct": 0.4649,
+        "energy_per_access_fj_median_err_pct": 0.0565,
+        "energy_per_access_fj_p95_err_pct": 0.3348,
+        "total_power_nw_median_err_pct": 0.0549,
+        "total_power_nw_p95_err_pct": 0.33,
+        "read_success_agreement_pct": 100.0,
+        "write_success_agreement_pct": 100.0
+      },
+      {
+        "setting": "50 ps / TRAP",
+        "ms_per_sample": 60.9,
+        "speedup_vs_reference": 1.752,
+        "read_margin_mv_median_err_pct": 0.0031,
+        "read_margin_mv_p95_err_pct": 0.0284,
+        "read_delay_ns_median_err_pct": 0.0111,
+        "read_delay_ns_p95_err_pct": 0.1547,
+        "write_delay_ns_median_err_pct": 0.0391,
+        "write_delay_ns_p95_err_pct": 0.6964,
+        "v_sn_written_v_median_err_pct": 0.0007,
+        "v_sn_written_v_p95_err_pct": 0.0058,
+        "retention_time_s_median_err_pct": 0.0003,
+        "retention_time_s_p95_err_pct": 0.0517,
+        "energy_per_access_fj_median_err_pct": 0.0213,
+        "energy_per_access_fj_p95_err_pct": 0.1653,
+        "total_power_nw_median_err_pct": 0.0207,
+        "total_power_nw_p95_err_pct": 0.1591,
+        "read_success_agreement_pct": 100.0,
+        "write_success_agreement_pct": 100.0
+      },
+      {
+        "setting": "100 ps / GEAR",
+        "ms_per_sample": 47.4,
+        "speedup_vs_reference": 2.249,
+        "read_margin_mv_median_err_pct": 0.0199,
+        "read_margin_mv_p95_err_pct": 0.5967,
+        "read_delay_ns_median_err_pct": 0.1581,
+        "read_delay_ns_p95_err_pct": 0.8344,
+        "write_delay_ns_median_err_pct": 0.368,
+        "write_delay_ns_p95_err_pct": 1.3665,
+        "v_sn_written_v_median_err_pct": 0.0119,
+        "v_sn_written_v_p95_err_pct": 0.1842,
+        "retention_time_s_median_err_pct": 0.0034,
+        "retention_time_s_p95_err_pct": 1.7379,
+        "energy_per_access_fj_median_err_pct": 0.1905,
+        "energy_per_access_fj_p95_err_pct": 0.5836,
+        "total_power_nw_median_err_pct": 0.1788,
+        "total_power_nw_p95_err_pct": 0.5444,
+        "read_success_agreement_pct": 100.0,
+        "write_success_agreement_pct": 100.0
+      }
+    ],
+    "backend_equivalence": {
+      "n": 8,
+      "worst_rel_diff_pct": 0.0017700487841511953
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

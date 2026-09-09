@@ -1,0 +1,147 @@
+\begin{algorithm}[!t]
+\caption{Configuration-driven DRAM design-space sampling}
+\label{alg:configuration_driven_dram_design_space_sampling}
+\begin{algorithmic}[1]
+\Require design-space specification $\mathcal{D}=\{(v_i,\ell_i,u_i,s_i,k_i)\}_{i=1}^{d}$
+\Require derived-quantity expressions $\mathcal{E}$, constants $\mathcal{K}$
+\Require sample count $N$, master seed $\sigma$
+\Ensure physical design points $\{\mathbf{p}^{(n)}\}_{n=1}^{N}$
+    \State $\sigma_{\text{doe}} \leftarrow \textsc{DeriveSeed}(\sigma, \text{`design'})$
+    \State $U \leftarrow \textsc{LatinHypercube}(N, d, \sigma_{\text{doe}})$\Comment{one sample per stratum in every 1-D projection}
+    \State record $\textsc{Discrepancy}(U)$ and $\min_{a\neq b}\lVert u_a-u_b\rVert$\Comment{design quality is measured, not assumed}
+    \For{$n \leftarrow 1$ \KwTo $N$}
+        \State $\mathbf{p}^{(n)} \leftarrow \mathcal{K}$
+        \For{$i \leftarrow 1$ \KwTo $d$}
+            \uIf{$k_i$ is categorical}
+                \State $p^{(n)}_i \leftarrow c_{\lfloor U_{ni}\,|C_i| \rfloor}$
+            \uElseIf{$s_i = \log$}
+                \State $p^{(n)}_i \leftarrow \exp\!\big(\ln \ell_i + U_{ni}(\ln u_i - \ln \ell_i)\big)$
+            \Else
+                \State $p^{(n)}_i \leftarrow \ell_i + U_{ni}(u_i-\ell_i)$
+            \EndIf
+        \EndFor
+        \For{$e \in \mathcal{E}$ \textbf{in declaration order}}
+            \State $\mathbf{p}^{(n)}[\text{lhs}(e)] \leftarrow \textsc{Eval}(e, \mathbf{p}^{(n)})$
+        \EndFor
+    \EndFor
+    \Return $\{\mathbf{p}^{(n)}\}$
+\end{algorithmic}
+\end{algorithm}
+% Note: Nothing about the DRAM architecture is hard-coded: retargeting the framework means supplying a different $\mathcal{D}$.
+
+
+\begin{algorithm}[!t]
+\caption{SPICE characterisation of one DRAM design point}
+\label{alg:spice_characterisation_of_one_dram_design_point}
+\begin{algorithmic}[1]
+\Require design point $\mathbf{p}$, technology $\mathcal{T}$, timing schedule $\mathcal{S}$
+\Ensure raw measurement set $\mathcal{M}$, leakage characteristic $I_{\mathrm{leak}}(V)$
+    \State $\mathcal{C} \leftarrow \mathcal{T}.\textsc{CardFor}(\mathbf{p}.\text{corner})$\Comment{corner-specific BSIM4 card}
+    \State build 1T1C cell, bitline pair, boosted precharge, write driver, sense latch
+    \State append \emph{leakage replica}: an identical access device whose storage node is driven by probe source $V_{\mathrm{snp}}$
+    \State $\mathcal{S} \leftarrow \textsc{Schedule}(\mathbf{p})$\Comment{write $\rightarrow$ precharge $\rightarrow$ read $\rightarrow$ sense}
+    \textbf{analysis 1:} \texttt{op} $\Rightarrow$ quiescent supply currents
+    \textbf{analysis 2:} \texttt{tran} over $\mathcal{S}$ with loose ABSTOL\Comment{$\mu$A-scale switching}
+        \State measure $V_{SN}^{\mathrm{hold}}$, $t_{\mathrm{write}}$, $V_{BL},V_{\overline{BL}}$ at $t_{\mathrm{SA}}$, $t_{\mathrm{read}}$, $\int i_{\mathrm{dd}}\,\mathrm{d}t$
+    \textbf{analysis 3:} \texttt{dc} sweep $V_{\mathrm{snp}}: 0 \to V_{DD}$ with tight ABSTOL\Comment{fA-scale leakage}
+        \State $I_{\mathrm{leak}}(V) \leftarrow -\,i(V_{\mathrm{snp}})$\Comment{current leaving the storage node}
+    \Return $\mathcal{M}, I_{\mathrm{leak}}(\cdot)$
+\end{algorithmic}
+\end{algorithm}
+% Note: Tolerances are set per analysis: one global ABSTOL cannot resolve femto-ampere leakage and micro-ampere switching in the same deck.
+
+
+\begin{algorithm}[!t]
+\caption{Quasi-static retention time from measured leakage}
+\label{alg:quasi_static_retention_time_from_measured_leakage}
+\begin{algorithmic}[1]
+\Require leakage characteristic $I_{\mathrm{leak}}(V)$ (measured, Algorithm~2)
+\Require node capacitance $C_{\mathrm{node}}$, written level $V_{\mathrm{init}}$
+\Require precharge level $V_{\mathrm{BLpre}}$, capacitances $C_s, C_{BL}$, sense-amplifier offset $\Delta V_{\min}$
+\Ensure retention time $t_{\mathrm{ret}}$ and a censoring flag
+    \State $V_{\mathrm{fail}} \leftarrow V_{\mathrm{BLpre}} + \Delta V_{\min}\,\dfrac{C_s+C_{BL}}{C_s}$\Comment{charge sharing no longer resolvable}
+    \If{$V_{\mathrm{init}} \le V_{\mathrm{fail}}$}
+        \Return $t_{\mathrm{ret}} \leftarrow 0$\Comment{a real observation, not a missing value}
+    \EndIf
+    \State $\mathcal{V} \leftarrow$ uniform grid on $[V_{\mathrm{fail}}, V_{\mathrm{init}}]$
+    \State $I \leftarrow \textsc{Interp}(I_{\mathrm{leak}}, \mathcal{V})$
+    \If{$\min I \le \epsilon$}
+        \Return $t_{\mathrm{ret}} \leftarrow \infty$ \textbf{(censored)}\Comment{node equilibrates above $V_{\mathrm{fail}}$}
+    \EndIf
+    \State $t_{\mathrm{ret}} \leftarrow \displaystyle\int_{V_{\mathrm{fail}}}^{V_{\mathrm{init}}} \frac{C_{\mathrm{node}}}{I_{\mathrm{leak}}(V)}\,\mathrm{d}V$\Comment{trapezoidal quadrature}
+    \Return $t_{\mathrm{ret}}$
+\end{algorithmic}
+\end{algorithm}
+% Note: Exact for an isolated capacitor under quasi-static leakage; validated against direct long-window transient simulation.
+
+
+\begin{algorithm}[!t]
+\caption{Cross-validated surrogate selection}
+\label{alg:cross_validated_surrogate_selection}
+\begin{algorithmic}[1]
+\Require dataset $\mathcal{D}$ with a fixed train/val/test split
+\Require model zoo $\mathcal{Z}$, folds $K$, primary metric $\mu$
+\Ensure per-target best surrogate $f^\star_y$ and its held-out score
+    \ForEach{target $y$}
+        \State $\mathcal{D}_y \leftarrow \{(\mathbf{x},y) \in \mathcal{D} : y \text{ observed}\}$\Comment{drop per target, never globally}
+        \ForEach{model $m \in \mathcal{Z}$}
+            \For{$k \leftarrow 1$ \KwTo $K$}
+                \State fit $m$ on $\mathcal{D}_y^{\mathrm{dev}}\setminus \mathrm{fold}_k$; score on $\mathrm{fold}_k$
+                \State retain the fold score\Comment{needed by the statistical tests}
+            \EndFor
+            \State refit $m$ on all of $\mathcal{D}_y^{\mathrm{dev}}$; score once on $\mathcal{D}_y^{\mathrm{test}}$
+        \EndFor
+        \State $f^\star_y \leftarrow \arg\max_m \overline{\mu}_{\mathrm{cv}}(m)$
+    \EndFor
+    \Return $\{f^\star_y\}$
+\end{algorithmic}
+\end{algorithm}
+% Note: The test split is touched exactly once per model and never participates in selection or tuning.
+
+
+\begin{algorithm}[!t]
+\caption{Robust surrogate-driven multi-objective optimisation}
+\label{alg:robust_surrogate_driven_multi_objective_optimisation}
+\begin{algorithmic}[1]
+\Require digital twin $\mathcal{F}$, decision variables $\mathbf{x}$
+\Require objectives $\{f_j\}$ with senses, constraints $\{g_c\}$
+\Require operating conditions $\mathcal{Q}$, budget $B$, repetitions $R$
+\Ensure Pareto set $\mathcal{P}$ and indicator distributions
+    \ForEach{algorithm $a$, repetition $r \in 1..R$}
+        \State seed $\leftarrow \textsc{DeriveSeed}(\sigma, a, r)$; budget $B$ \Comment{identical for every algorithm}
+        \While{budget remains}
+            \ForEach{candidate population $X$}
+                \ForEach{condition $q \in \mathcal{Q}$}
+                    \State $\mathbf{R}_q \leftarrow \mathcal{F}(\textsc{Decode}(X, q))$
+                \EndFor
+                \State $f_j \leftarrow \min_q$ if $f_j$ maximised else $\max_q$\Comment{worst case over PVT}
+                \State $g_c \leftarrow$ normalised violation, $g_c \le 0$ feasible
+            \EndFor
+        \EndWhile
+    \EndFor
+    \State $\mathcal{P}^{\mathrm{ref}} \leftarrow \textsc{NonDominated}\big(\bigcup_{a,r}\mathcal{P}_{a,r}\big)$
+    \State compute HV, IGD$^+$, spacing, spread per run against $\mathcal{P}^{\mathrm{ref}}$
+    \Return $\mathcal{P}^{\mathrm{ref}}$, indicator distributions
+\end{algorithmic}
+\end{algorithm}
+% Note: Worst-case reduction over $\mathcal{Q}$ turns the search into a robust design problem; equal budgets and $R$ repetitions make the comparison statistically testable.
+
+
+\begin{algorithm}[!t]
+\caption{Digital-twin robustness and yield estimation}
+\label{alg:digital_twin_robustness_and_yield_estimation}
+\begin{algorithmic}[1]
+\Require design $\mathbf{x}^\star$, process sigmas $\{\varsigma_p\}$
+\Require specification limits $\{(y_s, \tau_s, \text{sense})\}$, trials $M$
+\Ensure joint yield $Y$, per-spec yields, worst-case corner, SPICE check
+    \For{$m \leftarrow 1$ \KwTo $M$}
+        \State $\mathbf{x}^{(m)} \leftarrow \mathbf{x}^\star \odot (1 + \boldsymbol{\varepsilon}),\ \varepsilon_p\sim\mathcal{N}(0,\varsigma_p^2)$
+    \EndFor
+    \State $\mathbf{Y} \leftarrow \mathcal{F}(\{\mathbf{x}^{(m)}\})$\Comment{twin: $M$ evaluations in milliseconds}
+    \State $Y \leftarrow \frac{1}{M}\big|\{m : \forall s,\ y_s^{(m)} \text{ meets } \tau_s\}\big|$\Comment{joint, not the product of marginals}
+    \State $\mathcal{G} \leftarrow$ evaluate $\mathbf{x}^\star$ over corner $\times$ temperature grid; record worst case per spec
+    \State re-simulate a random subset of $\{\mathbf{x}^{(m)}\}$ in NGSpice; report $|Y_{\text{twin}} - Y_{\text{SPICE}}|$
+    \Return $Y$, per-spec yields, $\mathcal{G}$, agreement
+\end{algorithmic}
+\end{algorithm}
+% Note: A robustness claim that has not been checked against the simulator is not reported as a result.

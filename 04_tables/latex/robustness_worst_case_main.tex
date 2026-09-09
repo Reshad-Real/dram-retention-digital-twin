@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Worst-case performance of the selected designs across the PVT corner grid, with the corner at which it occurs.}
+\label{tab:robustness_worst_case_main}
+\footnotesize
+\begin{tabular}{lrrlrrrlrrrlrrrlrr}
+\toprule
+design\_id & read\_margin\_mv\_worst & read\_margin\_mv\_margin & read\_margin\_mv\_worst\_corner & read\_margin\_mv\_worst\_temp\_c & write\_efficiency\_worst & write\_efficiency\_margin & write\_efficiency\_worst\_corner & write\_efficiency\_worst\_temp\_c & read\_delay\_ns\_worst & read\_delay\_ns\_margin & read\_delay\_ns\_worst\_corner & read\_delay\_ns\_worst\_temp\_c & retention\_time\_s\_worst & retention\_time\_s\_margin & retention\_time\_s\_worst\_corner & retention\_time\_s\_worst\_temp\_c & passes\_all\_corners \\
+\midrule
+knee\_0 & 245.9 & 220.9 & SS & 125 & 0.9679 & 0.1179 & SF & 125 & 4.997 & 25.00 & SS & 125 & 0.01671 & -0.04729 & FF & 125 & no \\
+weighted\_1 & 230.2 & 205.2 & SF & 125 & 0.9638 & 0.1138 & SF & 125 & 2.993 & 27.01 & SS & 125 & 0.01738 & -0.04662 & SF & 125 & no \\
+best\_retention\_time\_s\_2 & 260.2 & 235.2 & SF & 125 & 0.9775 & 0.1275 & SF & 125 & 5.849 & 24.15 & SS & 125 & 0.02050 & -0.04350 & FF & 125 & no \\
+best\_read\_delay\_ns\_3 & 224.2 & 199.2 & FS & -40 & 0.9658 & 0.1158 & TT & 125 & 0.1995 & 29.80 & SS & 125 & 4.558e-4 & -0.06354 & SF & 125 & no \\
+best\_total\_power\_nw\_4 & 72.44 & 47.44 & SS & 55 & 0.9596 & 0.1096 & SS & 27 & 27.03 & 2.967 & SS & 0 & 2.164e-4 & -0.06378 & SF & 125 & no \\
+best\_read\_margin\_mv\_5 & 284.2 & 259.2 & FS & -40 & 0.9608 & 0.1108 & TT & 125 & 1.233 & 28.77 & FS & 125 & 3.170e-4 & -0.06368 & FF & 125 & no \\
+\bottomrule
+\end{tabular}
+\end{table}

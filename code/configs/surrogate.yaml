@@ -1,0 +1,145 @@
+# =====================================================================
+#  Stage 4 -- surrogate model comparison
+#  Merged on top of an architecture configuration:
+#      load_config("dram_1t1c_45nm_lp.yaml", "surrogate.yaml")
+# =====================================================================
+
+surrogate:
+  cv_folds: 5
+  primary_metric: r2
+  bootstrap_iterations: 400
+
+  # 0 == use every available training row.  Set a cap to trade accuracy for
+  # turnaround when iterating on the pipeline.
+  max_train_rows: 0
+
+  # Rows used for the cross-validated *comparison* of the 14 model families.
+  # The winner per response is then refitted on the entire development set for
+  # the digital twin, so capping this trades comparison precision -- not twin
+  # accuracy -- for turnaround.  Both counts appear in the leaderboard as
+  # n_compare and n_train.
+  comparison_max_rows: 15000
+
+  # The full zoo is compared.  Remove entries to shorten the run.
+  models:
+    - ridge
+    - elasticnet
+    - poly2_ridge
+    - knn
+    - svr_rbf
+    - gpr
+    - random_forest
+    - extra_trees
+    - hist_gbr
+    - xgboost
+    - lightgbm
+    - catboost
+    - mlp
+    - mlp_deep
+
+  categorical_features: [corner]
+
+  # Exactly-redundant engineered features are removed so that no response is
+  # modelled with a linearly dependent input:
+  #   cbl_over_cs   == cbl_ratio      (design variable; identical)
+  #   temperature_k == temperature_c + 273.15  (exact affine transform)
+  # Keeping both members of either pair splits SHAP attribution arbitrarily and
+  # makes the Sobol' (Saltelli) estimator ill-defined, so the duplicates are
+  # dropped and the physical design variables (cbl_ratio, temperature_c) kept.
+  exclude_features: [cbl_over_cs, temperature_k]
+
+  # Additional responses the twin needs that are not themselves objectives
+  # (used by the optimiser's feasibility constraints).
+  # `retention_time_ms` is deliberately absent: it is a unit rescaling of
+  # retention_time_s, which is already modelled, so training a second surrogate
+  # on it would add cost without adding information.
+  extra_targets:
+    - write_efficiency
+    - energy_per_access_fj
+
+  # Per-model fixed hyper-parameters.  Anything omitted uses the registry
+  # default in dramdt.surrogate.zoo.
+  hyperparameters:
+    ridge: {alpha: 1.0}
+    # A weakly-regularised elastic net does not converge within the
+    # default iteration budget on tens of thousands of rows: it spends
+    # ~170 s per fold to reach the same solution ridge finds in 0.3 s.
+    # `selection: random` and a 1e-3 tolerance make coordinate descent
+    # tractable without changing the fitted model materially.
+    elasticnet: {alpha: 0.001, l1_ratio: 0.5, max_iter: 3000, tol: 1.0e-3,
+                 selection: random}
+    poly2_ridge: {alpha: 10.0}
+    knn: {n_neighbors: 12}
+    svr_rbf: {C: 20.0, epsilon: 0.03}   # fitted on a capped subsample (see zoo.SUBSAMPLE_LIMITS)
+    gpr: {nu: 2.5, n_restarts_optimizer: 1}
+    random_forest: {n_estimators: 400, min_samples_leaf: 2, max_features: 0.5}
+    extra_trees: {n_estimators: 400, min_samples_leaf: 2}
+    hist_gbr: {max_iter: 500, learning_rate: 0.06}
+    xgboost: {n_estimators: 700, learning_rate: 0.05, max_depth: 8}
+    lightgbm: {n_estimators: 900, learning_rate: 0.05, num_leaves: 63}
+    catboost: {iterations: 700, learning_rate: 0.06, depth: 8}
+    mlp: {hidden_layer_sizes: [128, 64], max_iter: 400}
+    mlp_deep: {hidden_layer_sizes: [256, 128, 64], max_iter: 500}
+
+  # Optuna search spaces.  Only the models listed here are tuned.
+  tuning:
+    enabled: true
+    # Optuna searches the winning model per response inside the same CV loop.
+    # The budget is deliberately modest: the scientific claim is the *comparison*
+    # of model families, and tuning is reported as a refinement that is kept only
+    # when it actually improves the cross-validated score.
+    n_trials: 20
+    max_rows: 8000
+    models: [xgboost, lightgbm, catboost, random_forest, mlp]
+    spaces:
+      xgboost:
+        n_estimators: {type: int, low: 200, high: 1500, step: 50}
+        learning_rate: {type: float, low: 0.01, high: 0.3, log: true}
+        max_depth: {type: int, low: 3, high: 12}
+        subsample: {type: float, low: 0.5, high: 1.0}
+        colsample_bytree: {type: float, low: 0.5, high: 1.0}
+        min_child_weight: {type: int, low: 1, high: 20}
+        reg_lambda: {type: float, low: 1.0e-3, high: 20.0, log: true}
+      lightgbm:
+        n_estimators: {type: int, low: 200, high: 2000, step: 50}
+        learning_rate: {type: float, low: 0.01, high: 0.3, log: true}
+        num_leaves: {type: int, low: 15, high: 255}
+        subsample: {type: float, low: 0.5, high: 1.0}
+        colsample_bytree: {type: float, low: 0.5, high: 1.0}
+        min_child_samples: {type: int, low: 5, high: 100}
+        reg_lambda: {type: float, low: 1.0e-3, high: 20.0, log: true}
+      catboost:
+        iterations: {type: int, low: 200, high: 1500, step: 50}
+        learning_rate: {type: float, low: 0.01, high: 0.3, log: true}
+        depth: {type: int, low: 4, high: 10}
+        l2_leaf_reg: {type: float, low: 0.5, high: 20.0, log: true}
+      random_forest:
+        n_estimators: {type: int, low: 100, high: 800, step: 50}
+        min_samples_leaf: {type: int, low: 1, high: 20}
+        max_features: {type: float, low: 0.2, high: 1.0}
+      mlp:
+        alpha: {type: float, low: 1.0e-6, high: 1.0e-2, log: true}
+        learning_rate_init: {type: float, low: 1.0e-4, high: 1.0e-2, log: true}
+        activation: {type: categorical, choices: [relu, tanh]}
+
+# ---------------------------------------------------------------------
+# Stage 4b -- explainable AI
+# ---------------------------------------------------------------------
+xai:
+  shap:
+    enabled: true
+    max_background: 200        # k-means summary size for the background set
+    max_explain: 2000          # rows explained (SHAP is the expensive step)
+    interaction_max: 400       # rows used for SHAP interaction values
+  permutation_importance:
+    enabled: true
+    n_repeats: 15
+    max_rows: 5000
+  partial_dependence:
+    enabled: true
+    n_features: 8              # top-N features by SHAP importance
+    grid_resolution: 40
+    two_way_pairs: 4
+  ale:
+    enabled: true
+    n_bins: 25

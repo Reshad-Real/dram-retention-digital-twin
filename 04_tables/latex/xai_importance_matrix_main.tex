@@ -1,0 +1,33 @@
+\begin{table}[!t]
+\centering
+\caption{SHAP importance (% of total attribution) of each design variable across all modelled responses.}
+\label{tab:xai_importance_matrix_main}
+\footnotesize
+\begin{tabular}{lrrrrrrr}
+\toprule
+feature & energy\_per\_access\_fj & log10\_retention\_time\_s & log10\_total\_power\_nw & read\_delay\_ns & read\_margin\_mv & write\_efficiency & mean\_importance\_pct \\
+\midrule
+num\_\_vdd & 14.14 & 8.865 & 18.96 & 21.48 & 11.65 & 2.535 & 12.94 \\
+num\_\_vwl\_overdrive & -- & 9.324 & 3.158 & -- & 5.538 & 15.95 & 8.494 \\
+num\_\_signal\_charge\_c & 9.183 & -- & 5.060 & -- & -- & -- & 7.121 \\
+num\_\_charge\_share\_ratio & 11.89 & -- & 7.108 & 6.464 & 5.121 & 1.899 & 6.496 \\
+num\_\_vwl\_boost & -- & 8.887 & -- & -- & 5.592 & 4.613 & 6.364 \\
+num\_\_t\_write\_pulse & -- & 6.996 & -- & -- & 3.844 & 7.805 & 6.215 \\
+num\_\_vblpre\_ratio & 4.609 & 8.901 & 6.180 & 3.722 & 5.077 & -- & 5.698 \\
+num\_\_sa\_drive\_ratio & 7.592 & -- & 5.789 & 3.283 & -- & -- & 5.555 \\
+num\_\_cbl\_over\_cs & -- & 6.844 & -- & 2.230 & 7.402 & -- & 5.492 \\
+num\_\_stored\_charge\_c & 8.120 & -- & 5.525 & 2.540 & -- & -- & 5.395 \\
+num\_\_vgs\_retention & 4.186 & 2.572 & 5.336 & 7.500 & 6.657 & -- & 5.250 \\
+num\_\_cbl\_ratio & -- & 6.814 & -- & 2.824 & 7.523 & 2.379 & 4.885 \\
+cat\_\_corner\_FF & 2.332 & 2.482 & 4.010 & 5.017 & 4.358 & 10.34 & 4.757 \\
+cat\_\_corner\_SF & -- & -- & 2.635 & -- & 4.192 & 6.972 & 4.599 \\
+num\_\_cs & 2.410 & 4.017 & 2.849 & 8.951 & -- & 4.262 & 4.498 \\
+num\_\_wsan & 3.824 & -- & 4.620 & 4.952 & -- & 4.268 & 4.416 \\
+cat\_\_corner\_TT & -- & 2.794 & 3.112 & -- & 3.961 & 7.187 & 4.264 \\
+cat\_\_corner\_FS & 2.207 & 2.261 & -- & -- & 3.902 & 8.529 & 4.224 \\
+cat\_\_corner\_SS & -- & -- & -- & -- & 4.069 & 4.356 & 4.213 \\
+num\_\_vwl\_low & 2.840 & -- & 3.494 & 5.431 & 4.592 & -- & 4.089 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Blank entries mean the feature did not enter that response's top-15 ranking.
+\end{table}

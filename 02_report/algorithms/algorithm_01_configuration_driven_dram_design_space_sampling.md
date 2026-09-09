@@ -1,0 +1,33 @@
+### Algorithm 1: Configuration-driven DRAM design-space sampling
+
+```
+Algorithm 1: Configuration-driven DRAM design-space sampling
+Implemented by: dramdt.doe.sampling.generate_design + dramdt.config.DesignSpace.decode_row
+
+Require: design-space specification D=(v_i,lo_i,u_i,s_i,k_i)_i=1^d
+Require: derived-quantity expressions E, constants K
+Require: sample count N, master seed sigma
+Ensure:  physical design points p^(n)_n=1^N
+
+  1: sigma_doe <- DeriveSeed(sigma, `design')
+  2: U <- LatinHypercube(N, d, sigma_doe) // one sample per stratum in every 1-D projection
+  3: record Discrepancy(U) and min_a!= b|| u_a-u_b|| // design quality is measured, not assumed
+  4: for n <- 1 to N
+  5:   p^(n) <- K
+  6:   for i <- 1 to d
+  7:     if k_i is categorical
+  8:       p^(n)_i <- c_floor( U_ni |C_i| )
+  9:     else if s_i = log
+ 10:       p^(n)_i <- exp(ln lo_i + U_ni(ln u_i - ln lo_i))
+ 11:     else
+ 12:       p^(n)_i <- lo_i + U_ni(u_i-lo_i)
+ 13:     end if
+ 14:   end for
+ 15:   for e in E in declaration order
+ 16:     p^(n)[lhs(e)] <- Eval(e, p^(n))
+ 17:   end for
+ 18: end for
+ 19: return p^(n)
+
+Note: Nothing about the DRAM architecture is hard-coded: retargeting the framework means supplying a different $\mathcal{D}$.
+```

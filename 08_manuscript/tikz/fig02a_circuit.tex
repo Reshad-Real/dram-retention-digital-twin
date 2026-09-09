@@ -1,0 +1,136 @@
+\documentclass[border=8pt]{standalone}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{calc,positioning,fit}
+\begin{document}
+\ctikzset{bipoles/length=1.0cm}
+\begin{circuitikz}[line width=0.9pt, font=\sffamily\small]
+
+\def\yb{0}       % BL rail
+\def\ybb{-5}     % BLbar rail
+\def\xL{15.0}    % sense-amp BL node column
+\def\xR{18.0}    % sense-amp BLbar node column
+
+% ================= bitline rails =================
+% BL runs to its drop point; BLbar runs under the amplifier to its riser.
+\draw (0,\yb)  node[left]{\textbf{BL}} -- (13.6,\yb);
+\draw (0,\ybb) node[left]{$\overline{\textbf{BL}}$} -- (19.4,\ybb);
+
+% ================= 1T1C cell =================
+\node[nmos] (Macc) at (1.7,1.3){};
+\draw (Macc.source) -- (1.7,\yb) node[circ]{};
+\draw (Macc.gate) -- ++(-1.3,0) node[left]{\textbf{WL}};
+\draw (Macc.drain) -- ++(0,0.4) coordinate(SN) node[circ]{};
+\node[anchor=west] at ([xshift=3pt]SN){SN};
+\draw (SN) to[C, l_=$C_s$] ++(0,1.7) node[vcc]{$V_{plate}$};
+\node[anchor=north west] at (2.15,0.9){$M_{acc}$};
+\node[draw=blue!55,dashed,rounded corners,fit=(Macc)(SN),inner sep=8pt,
+      label={[blue!55,font=\sffamily\footnotesize]above:1T1C cell}]{};
+
+% ================= write driver (transmission gate) =================
+\node[nmos]           (Mwn) at (4.3,1.6){};
+\node[pmos,xscale=-1] (Mwp) at (5.7,1.6){};
+\draw (Mwn.drain) -- (4.3,2.4) -- (5.7,2.4) -- (Mwp.drain);
+\node[circ] at (5.0,2.4){};
+\draw (5.0,2.4) -- (5.0,3.2) node[vcc]{$V_{data}$};
+\draw (Mwn.source) -- (4.3,0.8) -- (5.7,0.8) -- (Mwp.source);
+\draw (5.0,0.8) -- (5.0,\yb);
+\node[circ] at (5.0,\yb){}; \node[circ] at (5.0,0.8){};
+\draw (Mwn.gate) -- ++(-0.8,0) node[left]{WR};
+\draw (Mwp.gate) -- ++(0.6,0) node[right]{$\overline{\mathrm{WR}}$};
+\node[anchor=south] at (4.3,2.55){$M_{wn}$};
+\node[anchor=south] at (5.7,2.55){$M_{wp}$};
+
+% ================= bitline capacitances =================
+\node[circ] at (6.8,\yb){};
+\draw (6.8,\yb) to[C, l=$C_{BL}$] (6.8,\yb-1.5) node[ground]{};
+\node[circ] at (7.2,\ybb){};
+\draw (7.2,\ybb) to[C, l=$C_{BL}$] (7.2,\ybb-1.5) node[ground]{};
+
+% ================= precharge / equalize =================
+% M_eq shorts the two rails.
+\node[nmos] (Meq) at (8.2,-2.5){};
+\draw (Meq.drain)  -- (8.2,\yb)  node[circ]{};
+\draw (Meq.source) -- (8.2,\ybb) node[circ]{};
+\draw (Meq.gate) -- ++(-0.9,0) node[left]{EQ\,($0\!\to\!V_{PP}$)};
+\node[anchor=west] at (8.55,-2.5){$M_{eq}$};
+% M_pc1 (BL -> Vblpre) and M_pc2 (Vblpre -> BLbar), stacked.
+\coordinate (vbp) at (11.0,-2.5);
+\node[nmos] (Mpc1) at (11.0,-1.2){};
+\draw (Mpc1.drain)  -- (11.0,\yb) node[circ]{};
+\draw (Mpc1.source) -- (vbp);
+\node[nmos] (Mpc2) at (11.0,-3.8){};
+\draw (Mpc2.drain)  -- (vbp);
+\draw (Mpc2.source) -- (11.0,\ybb) node[circ]{};
+\node[circ] at (vbp){};
+\draw (vbp) -- ++(0.7,0) node[right]{$V_{BLpre}$};
+% shared gate bus for the precharge pair: same precharge/equalize enable (EQ)
+% that drives M_eq.  A short stub off the top of the bus carries the signal name.
+\draw (Mpc1.gate) -- (9.7,-1.2);
+\draw (Mpc2.gate) -- (9.7,-3.8);
+\draw (9.7,-1.2) -- (9.7,-3.8);
+\draw (9.7,-1.2) -- (9.7,-0.65) node[above]{EQ};
+\node[anchor=west] at ([xshift=2pt]Mpc1.east){$M_{pc1}$};
+\node[anchor=west] at ([xshift=2pt]Mpc2.east){$M_{pc2}$};
+
+% ================= sense amplifier =================
+% cross-coupled latch: PMOS pair (top), NMOS pair (bottom), header to VDD,
+% footer to ground.  Left-column gates face right, right-column gates face left.
+\node[pmos,xscale=-1] (Mp1) at (\xL,-0.8){};
+\node[pmos]           (Mp2) at (\xR,-0.8){};
+\node[nmos,xscale=-1] (Mn1) at (\xL,-4.0){};
+\node[nmos]           (Mn2) at (\xR,-4.0){};
+\node[anchor=east] at (14.4,-0.3){$M_{p1}$};
+\node[anchor=west] at (18.55,-0.6){$M_{p2}$};
+\node[anchor=east] at (14.4,-4.5){$M_{n1}$};
+\node[anchor=west] at (18.55,-4.2){$M_{n2}$};
+
+% BL / BLbar node columns (between the PMOS source and the NMOS drain)
+\draw (Mp1.source) -- (Mn1.drain);
+\draw (Mp2.source) -- (Mn2.drain);
+
+% bitline taps: BL drops in from the left, BLbar rises in from the right,
+% so neither wire passes through a transistor.
+\draw (13.6,\yb) -- (13.6,-2.4) -- (\xL,-2.4) node[circ]{};
+\draw (19.4,\ybb) -- (19.4,-2.4) -- (\xR,-2.4) node[circ]{};
+
+% SAP header to VDD
+\coordinate (sap) at (16.5,0.4);
+\draw (Mp1.drain) -- (\xL,0.4) -- (sap);
+\draw (Mp2.drain) -- (\xR,0.4) -- (sap);
+\node[circ] at (sap){};
+\node[pmos,xscale=-1] (Mph) at (16.5,1.5){};
+\draw (Mph.source) -- (sap);
+\draw (Mph.drain) -- ++(0,0.9) node[vcc]{$V_{DD}$};
+\draw (Mph.gate) -- ++(0.9,0) node[right]{$\overline{\mathrm{SAE}}$};
+\node[anchor=east] at (15.7,1.5){header};
+
+% SAN footer to ground
+\coordinate (san) at (16.5,-6.5);
+\draw (Mn1.source) -- (\xL,-6.5) -- (san);
+\draw (Mn2.source) -- (\xR,-6.5) -- (san);
+\node[circ] at (san){};
+\node[nmos,xscale=-1] (Mnf) at (16.5,-7.6){};
+\draw (Mnf.drain) -- (san);
+\draw (Mnf.source) -- ++(0,-0.6) node[ground]{};
+\draw (Mnf.gate) -- ++(0.9,0) node[right]{SAE};
+\node[anchor=east] at (15.7,-7.6){footer};
+
+% cross-coupling gate buses (short, one per column)
+\draw (Mp1.gate) -- (15.8,-0.8);
+\draw (Mn1.gate) -- (15.8,-4.0);
+\draw (15.8,-0.8) -- (15.8,-4.0);
+\draw (Mp2.gate) -- (17.2,-0.8);
+\draw (Mn2.gate) -- (17.2,-4.0);
+\draw (17.2,-0.8) -- (17.2,-4.0);
+% left-column gates sense BLbar (upper cross); right-column gates sense BL (lower)
+\draw (15.8,-1.9) -- (\xR,-1.9) node[circ]{};
+\node[circ] at (15.8,-1.9){};
+\draw (17.2,-3.1) -- (\xL,-3.1) node[circ]{};
+\node[circ] at (17.2,-3.1){};
+
+\node[draw=teal!60,dashed,rounded corners,
+      fit=(Mp1)(Mp2)(Mn1)(Mn2)(Mph)(Mnf),inner sep=11pt,
+      label={[teal!60,font=\sffamily\footnotesize]above:sense amplifier}]{};
+
+\end{circuitikz}
+\end{document}

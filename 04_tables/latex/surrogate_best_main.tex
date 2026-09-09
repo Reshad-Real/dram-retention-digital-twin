@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Best surrogate per response with bootstrap confidence intervals.}
+\label{tab:surrogate_best_main}
+\footnotesize
+\begin{tabular}{lllrrrrrrrlll}
+\toprule
+response & best model & family & n train & n test & test r2 & test rmse & test mae & test mape & test max\_error & test r2 95\% CI & test rmse 95\% CI & test mae 95\% CI \\
+\midrule
+log10\_retention\_time\_s & mlp\_deep & neural & 42491 & 7496 & 0.9510 & 0.9212 & 0.2123 & 46.75 & 12.24 & [0.9413, 0.9594] & [0.8323, 1.0117] & [0.1927, 0.2322] \\
+read\_delay\_ns & mlp\_deep & neural & 33374 & 5915 & 0.9878 & 1.031 & 0.4237 & 6.293 & 16.84 & [0.9852, 0.9901] & [0.9037, 1.1546] & [0.4002, 0.4489] \\
+log10\_total\_power\_nw & mlp\_deep & neural & 42491 & 7496 & 0.9827 & 0.05173 & 0.02065 & 17.02 & 1.767 & [0.9750, 0.9875] & [0.0431, 0.0606] & [0.0197, 0.0218] \\
+read\_margin\_mv & mlp & neural & 42491 & 7496 & 0.9928 & 3.321 & 1.539 & 6.071 & 57.69 & [0.9915, 0.9943] & [2.9430, 3.6440] & [1.4719, 1.6086] \\
+\textbf{write\_efficiency} & \textbf{mlp\_deep} & \textbf{neural} & \textbf{42491} & \textbf{7496} & \textbf{0.9986} & \textbf{0.004596} & \textbf{0.003023} & \textbf{0.3674} & \textbf{0.07089} & \textbf{[0.9984, 0.9987]} & \textbf{[0.0043, 0.0049]} & \textbf{[0.0029, 0.0031]} \\
+energy\_per\_access\_fj & mlp\_deep & neural & 42491 & 7496 & 0.9961 & 2.674 & 1.237 & 4.853 & 51.67 & [0.9954, 0.9968] & [2.4045, 2.9008] & [1.1827, 1.2955] \\
+\bottomrule
+\end{tabular}
+\end{table}

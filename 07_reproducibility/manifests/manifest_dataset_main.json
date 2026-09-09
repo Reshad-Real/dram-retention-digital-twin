@@ -1,0 +1,150 @@
+{
+  "stage": "dataset_main",
+  "started_utc": "2026-07-23T09:52:43.139447+00:00",
+  "finished_utc": "2026-07-23T09:53:53.926910+00:00",
+  "duration_s": 70.7312043000129,
+  "status": "success",
+  "config_hash": "954478d4cad7f9d6",
+  "seeds": {
+    "master_seed": 20260723,
+    "python_random": true,
+    "numpy_legacy": true,
+    "PYTHONHASHSEED": "20260723"
+  },
+  "parameters": {
+    "config": [
+      "E:\\DRAM\\configs\\base.yaml",
+      "E:\\DRAM\\configs\\dram_1t1c_45nm_lp.yaml"
+    ],
+    "n_samples": 50000,
+    "tag": "main"
+  },
+  "outputs": {
+    "campaign": {
+      "n_requested": 50000,
+      "n_completed": 50000,
+      "n_simulations_ok": 49999,
+      "success_rate": 0.99998,
+      "duration_s": 0.0,
+      "samples_per_second": 71428027540.329,
+      "sampler": "lhs",
+      "n_samples": 50000,
+      "n_dimensions": 15,
+      "seed": 1691686347,
+      "centered_l2_discrepancy": 0.006804349185878689,
+      "discrepancy_n_used": 4000.0,
+      "min_pairwise_distance": 0.4114723192525593,
+      "min_distance_n_used": 4000.0,
+      "mean_coordinate": 0.4999999934231667,
+      "min_coordinate": 1.8000959752575275e-06,
+      "max_coordinate": 0.9999988300884285,
+      "n_workers": 18,
+      "chunk_size": 125,
+      "config_hash": "954478d4cad7f9d6",
+      "model_fingerprint": "27fcaebadef24739",
+      "ngspice": "E:\\DRAM\\tools\\ng\\Spice64\\bin\\ngspice_con.exe"
+    },
+    "raw_dataset": "E:\\DRAM\\data\\raw\\main_raw.parquet",
+    "retention_validation": {
+      "table": "E:\\DRAM\\results\\tables\\retention_validation_main.csv",
+      "n_pairs": 200.0,
+      "pearson_r_log10": 0.9997378735980524,
+      "spearman_rho": 0.9995454886372162,
+      "median_abs_log10_error": 0.010721479747708762,
+      "mean_log10_error": -0.016681538904810774,
+      "geometric_mean_ratio": 0.9623176716560103,
+      "p90_abs_log10_error": 0.04450841014044889,
+      "within_factor_2_pct": 100.0,
+      "within_factor_10_pct": 100.0
+    },
+    "processed_dataset": "E:\\DRAM\\data\\processed\\main_processed.parquet",
+    "preprocess_report": {
+      "n_input": 50000,
+      "n_output": 49987,
+      "removed": {
+        "simulation_failed": 1,
+        "not_converged": 3,
+        "incomplete_measurements": 9
+      },
+      "labelled": {
+        "read_success": 39289,
+        "write_success": 34985,
+        "retention_censored": 0,
+        "design_feasible": 28955
+      },
+      "engineered_features": [
+        "charge_share_ratio",
+        "cbl_over_cs",
+        "signal_charge_c",
+        "stored_charge_c",
+        "vwl_overdrive",
+        "vgs_write",
+        "vgs_retention",
+        "access_aspect",
+        "access_area",
+        "temperature_k",
+        "inv_thermal_v",
+        "sa_drive_ratio",
+        "sa_aspect"
+      ],
+      "target_transforms": {
+        "retention_time_s": "log10_retention_time_s",
+        "total_power_nw": "log10_total_power_nw"
+      },
+      "outliers_flagged": {
+        "retention_time_s": 1700,
+        "read_delay_ns": 0,
+        "total_power_nw": 850,
+        "read_margin_mv": 315
+      },
+      "split_sizes": {
+        "train": 34992,
+        "val": 7499,
+        "test": 7496
+      },
+      "notes": [
+        "retention_time_s: 7236 values floored at 1e-12 before the log10 transform",
+        "split stratified by 'corner'"
+      ],
+      "retention_rate": 0.99974
+    },
+    "export": {
+      "excel": "E:\\DRAM\\data\\processed\\dram_dataset_main.xlsx",
+      "csv": "E:\\DRAM\\data\\processed\\dram_dataset_main.csv.gz",
+      "rows": 49987,
+      "columns": 84,
+      "size_mb": 37.3
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    },
+    "ngspice": {
+      "ngspice_exe": "E:\\DRAM\\tools\\ng\\Spice64\\bin\\ngspice_con.exe",
+      "ngspice_dll": "E:\\DRAM\\tools\\ng\\Spice64_dll\\dll-vs\\ngspice.dll",
+      "spice_lib_dir": "E:\\DRAM\\tools\\ng\\Spice64\\share\\ngspice",
+      "ngspice_version": "ngspice-46 : Circuit level simulation program",
+      "platform": "Windows-11-10.0.26200-SP0"
+    }
+  },
+  "error": null
+}

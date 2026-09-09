@@ -1,0 +1,29 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{calc,positioning}
+\begin{document}
+\ctikzset{bipoles/length=1.1cm}
+\begin{circuitikz}[line width=0.9pt, font=\sffamily]
+
+  % access device identical to the cell, probed by V_snp
+  \node[nmos] (M) at (0,0) {};
+  \node[anchor=west] at ([xshift=3pt]M.north east) {$M_{acc}$ (replica)};
+
+  % drain held at V_BLpre
+  \draw (M.drain) -- ++(0,1.3) node[vcc]{$V_{BLpre}$};
+
+  % gate at the retention wordline level
+  \draw (M.gate) -- ++(-2.0,0) node[left]{$V_{WL,\mathrm{low}}$};
+
+  % source is the storage node, driven by the probe source to ground
+  \draw (M.source) -- ++(0,-0.7) coordinate (SN);
+  \node[circ] at (SN) {};
+  \node[anchor=west] at ([xshift=3pt]SN) {SN};
+  \draw (SN) to[V=$V_{snp}$, invert, i>_=$I_{\mathrm{leak}}$] ++(0,-2.8)
+        node[ground]{};
+
+  \node[align=left, anchor=west] at (1.9,-1.4)
+    {DC sweep $V_{snp}\!:\,0\!\to\!V_{DD}$\\ yields $I_{\mathrm{leak}}(V_{SN})$};
+
+\end{circuitikz}
+\end{document}

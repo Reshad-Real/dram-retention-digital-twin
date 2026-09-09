@@ -1,0 +1,26 @@
+\begin{algorithm}[!t]
+\caption{Robust surrogate-driven multi-objective optimisation}
+\label{alg:robust_surrogate_driven_multi_objective_optimisation}
+\begin{algorithmic}[1]
+\Require digital twin $\mathcal{F}$, decision variables $\mathbf{x}$
+\Require objectives $\{f_j\}$ with senses, constraints $\{g_c\}$
+\Require operating conditions $\mathcal{Q}$, budget $B$, repetitions $R$
+\Ensure Pareto set $\mathcal{P}$ and indicator distributions
+    \ForEach{algorithm $a$, repetition $r \in 1..R$}
+        \State seed $\leftarrow \textsc{DeriveSeed}(\sigma, a, r)$; budget $B$ \Comment{identical for every algorithm}
+        \While{budget remains}
+            \ForEach{candidate population $X$}
+                \ForEach{condition $q \in \mathcal{Q}$}
+                    \State $\mathbf{R}_q \leftarrow \mathcal{F}(\textsc{Decode}(X, q))$
+                \EndFor
+                \State $f_j \leftarrow \min_q$ if $f_j$ maximised else $\max_q$\Comment{worst case over PVT}
+                \State $g_c \leftarrow$ normalised violation, $g_c \le 0$ feasible
+            \EndFor
+        \EndWhile
+    \EndFor
+    \State $\mathcal{P}^{\mathrm{ref}} \leftarrow \textsc{NonDominated}\big(\bigcup_{a,r}\mathcal{P}_{a,r}\big)$
+    \State compute HV, IGD$^+$, spacing, spread per run against $\mathcal{P}^{\mathrm{ref}}$
+    \Return $\mathcal{P}^{\mathrm{ref}}$, indicator distributions
+\end{algorithmic}
+\end{algorithm}
+% Note: Worst-case reduction over $\mathcal{Q}$ turns the search into a robust design problem; equal budgets and $R$ repetitions make the comparison statistically testable.

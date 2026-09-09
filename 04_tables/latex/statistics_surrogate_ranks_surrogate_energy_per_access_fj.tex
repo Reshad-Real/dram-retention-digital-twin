@@ -1,0 +1,27 @@
+\begin{table}[!t]
+\centering
+\caption{Mean Friedman ranks of the surrogate models for energy_per_access_fj (lower is better).}
+\label{tab:statistics_surrogate_ranks_surrogate_energy_per_access_fj}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+group & mean\_rank & rank\_position \\
+\midrule
+mlp & 1.400 & 1 \\
+mlp\_deep & 1.600 & 2 \\
+catboost & 3 & 3 \\
+lightgbm & 4.400 & 4 \\
+hist\_gbr & 5 & 5 \\
+xgboost & 5.600 & 6 \\
+poly2\_ridge & 7 & 7 \\
+gpr & 8 & 8 \\
+random\_forest & 9.600 & 9 \\
+svr\_rbf & 9.800 & 10 \\
+extra\_trees & 10.60 & 11 \\
+knn & 12 & 12 \\
+ridge & 13.40 & 13 \\
+elasticnet & 13.60 & 14 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Friedman p = 1.023e-08; Nemenyi critical difference = 8.874 at alpha = 0.05.
+\end{table}

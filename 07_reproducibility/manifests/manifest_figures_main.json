@@ -1,0 +1,344 @@
+{
+  "stage": "figures_main",
+  "started_utc": "2026-07-23T13:40:11.638191+00:00",
+  "finished_utc": "2026-07-23T13:41:38.100704+00:00",
+  "duration_s": 86.40365210000891,
+  "status": "success",
+  "config_hash": "e22061fdb47e16e7",
+  "seeds": {},
+  "parameters": {},
+  "outputs": {
+    "palette_passed": true,
+    "figures": {
+      "design_space_coverage": [
+        "E:\\DRAM\\results\\figures\\fig01_design_space_coverage.png",
+        "E:\\DRAM\\results\\figures\\fig01_design_space_coverage.pdf",
+        "E:\\DRAM\\results\\figures\\fig01_design_space_coverage.svg"
+      ],
+      "response_distributions": [
+        "E:\\DRAM\\results\\figures\\fig02_response_distributions.png",
+        "E:\\DRAM\\results\\figures\\fig02_response_distributions.pdf",
+        "E:\\DRAM\\results\\figures\\fig02_response_distributions.svg"
+      ],
+      "correlation_matrix": [
+        "E:\\DRAM\\results\\figures\\fig03_correlation_matrix.png",
+        "E:\\DRAM\\results\\figures\\fig03_correlation_matrix.pdf",
+        "E:\\DRAM\\results\\figures\\fig03_correlation_matrix.svg"
+      ],
+      "retention_validation": [
+        "E:\\DRAM\\results\\figures\\fig04_retention_validation.png",
+        "E:\\DRAM\\results\\figures\\fig04_retention_validation.pdf",
+        "E:\\DRAM\\results\\figures\\fig04_retention_validation.svg"
+      ],
+      "surrogate_comparison": [
+        "E:\\DRAM\\results\\figures\\fig05_surrogate_comparison.png",
+        "E:\\DRAM\\results\\figures\\fig05_surrogate_comparison.pdf",
+        "E:\\DRAM\\results\\figures\\fig05_surrogate_comparison.svg"
+      ],
+      "cv_boxplot_log10_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig06a_cv_log10_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig06a_cv_log10_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig06a_cv_log10_retention_time_s.svg"
+      ],
+      "cv_boxplot_read_delay_ns": [
+        "E:\\DRAM\\results\\figures\\fig06b_cv_read_delay_ns.png",
+        "E:\\DRAM\\results\\figures\\fig06b_cv_read_delay_ns.pdf",
+        "E:\\DRAM\\results\\figures\\fig06b_cv_read_delay_ns.svg"
+      ],
+      "cv_boxplot_log10_total_power_nw": [
+        "E:\\DRAM\\results\\figures\\fig06c_cv_log10_total_power_nw.png",
+        "E:\\DRAM\\results\\figures\\fig06c_cv_log10_total_power_nw.pdf",
+        "E:\\DRAM\\results\\figures\\fig06c_cv_log10_total_power_nw.svg"
+      ],
+      "cv_boxplot_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig06d_cv_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig06d_cv_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig06d_cv_read_margin_mv.svg"
+      ],
+      "cv_boxplot_write_efficiency": [
+        "E:\\DRAM\\results\\figures\\fig06e_cv_write_efficiency.png",
+        "E:\\DRAM\\results\\figures\\fig06e_cv_write_efficiency.pdf",
+        "E:\\DRAM\\results\\figures\\fig06e_cv_write_efficiency.svg"
+      ],
+      "cv_boxplot_energy_per_access_fj": [
+        "E:\\DRAM\\results\\figures\\fig06f_cv_energy_per_access_fj.png",
+        "E:\\DRAM\\results\\figures\\fig06f_cv_energy_per_access_fj.pdf",
+        "E:\\DRAM\\results\\figures\\fig06f_cv_energy_per_access_fj.svg"
+      ],
+      "predicted_vs_actual": [
+        "E:\\DRAM\\results\\figures\\fig07_parity.png",
+        "E:\\DRAM\\results\\figures\\fig07_parity.pdf",
+        "E:\\DRAM\\results\\figures\\fig07_parity.svg"
+      ],
+      "residuals": [
+        "E:\\DRAM\\results\\figures\\fig08_residuals.png",
+        "E:\\DRAM\\results\\figures\\fig08_residuals.pdf",
+        "E:\\DRAM\\results\\figures\\fig08_residuals.svg"
+      ],
+      "twin_speedup": [
+        "E:\\DRAM\\results\\figures\\fig09_twin_speedup.png",
+        "E:\\DRAM\\results\\figures\\fig09_twin_speedup.pdf",
+        "E:\\DRAM\\results\\figures\\fig09_twin_speedup.svg"
+      ],
+      "shap_beeswarm_energy_per_access_fj": [
+        "E:\\DRAM\\results\\figures\\fig10a_shap_beeswarm_energy_per_access_fj.png",
+        "E:\\DRAM\\results\\figures\\fig10a_shap_beeswarm_energy_per_access_fj.pdf",
+        "E:\\DRAM\\results\\figures\\fig10a_shap_beeswarm_energy_per_access_fj.svg"
+      ],
+      "shap_beeswarm_log10_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig10b_shap_beeswarm_log10_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig10b_shap_beeswarm_log10_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig10b_shap_beeswarm_log10_retention_time_s.svg"
+      ],
+      "shap_beeswarm_log10_total_power_nw": [
+        "E:\\DRAM\\results\\figures\\fig10c_shap_beeswarm_log10_total_power_nw.png",
+        "E:\\DRAM\\results\\figures\\fig10c_shap_beeswarm_log10_total_power_nw.pdf",
+        "E:\\DRAM\\results\\figures\\fig10c_shap_beeswarm_log10_total_power_nw.svg"
+      ],
+      "shap_beeswarm_read_delay_ns": [
+        "E:\\DRAM\\results\\figures\\fig10d_shap_beeswarm_read_delay_ns.png",
+        "E:\\DRAM\\results\\figures\\fig10d_shap_beeswarm_read_delay_ns.pdf",
+        "E:\\DRAM\\results\\figures\\fig10d_shap_beeswarm_read_delay_ns.svg"
+      ],
+      "shap_beeswarm_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig10e_shap_beeswarm_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig10e_shap_beeswarm_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig10e_shap_beeswarm_read_margin_mv.svg"
+      ],
+      "shap_beeswarm_write_efficiency": [
+        "E:\\DRAM\\results\\figures\\fig10f_shap_beeswarm_write_efficiency.png",
+        "E:\\DRAM\\results\\figures\\fig10f_shap_beeswarm_write_efficiency.pdf",
+        "E:\\DRAM\\results\\figures\\fig10f_shap_beeswarm_write_efficiency.svg"
+      ],
+      "shap_importance_energy_per_access_fj": [
+        "E:\\DRAM\\results\\figures\\fig11b_shap_importance_energy_per_access_fj.png",
+        "E:\\DRAM\\results\\figures\\fig11b_shap_importance_energy_per_access_fj.pdf",
+        "E:\\DRAM\\results\\figures\\fig11b_shap_importance_energy_per_access_fj.svg"
+      ],
+      "shap_importance_log10_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig11c_shap_importance_log10_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig11c_shap_importance_log10_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig11c_shap_importance_log10_retention_time_s.svg"
+      ],
+      "shap_importance_log10_total_power_nw": [
+        "E:\\DRAM\\results\\figures\\fig11d_shap_importance_log10_total_power_nw.png",
+        "E:\\DRAM\\results\\figures\\fig11d_shap_importance_log10_total_power_nw.pdf",
+        "E:\\DRAM\\results\\figures\\fig11d_shap_importance_log10_total_power_nw.svg"
+      ],
+      "shap_importance_read_delay_ns": [
+        "E:\\DRAM\\results\\figures\\fig11e_shap_importance_read_delay_ns.png",
+        "E:\\DRAM\\results\\figures\\fig11e_shap_importance_read_delay_ns.pdf",
+        "E:\\DRAM\\results\\figures\\fig11e_shap_importance_read_delay_ns.svg"
+      ],
+      "shap_importance_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig11f_shap_importance_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig11f_shap_importance_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig11f_shap_importance_read_margin_mv.svg"
+      ],
+      "shap_importance_write_efficiency": [
+        "E:\\DRAM\\results\\figures\\fig11g_shap_importance_write_efficiency.png",
+        "E:\\DRAM\\results\\figures\\fig11g_shap_importance_write_efficiency.pdf",
+        "E:\\DRAM\\results\\figures\\fig11g_shap_importance_write_efficiency.svg"
+      ],
+      "partial_dependence_energy_per_access_fj": [
+        "E:\\DRAM\\results\\figures\\fig13a_pdp_energy_per_access_fj.png",
+        "E:\\DRAM\\results\\figures\\fig13a_pdp_energy_per_access_fj.pdf",
+        "E:\\DRAM\\results\\figures\\fig13a_pdp_energy_per_access_fj.svg"
+      ],
+      "partial_dependence_log10_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig13b_pdp_log10_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig13b_pdp_log10_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig13b_pdp_log10_retention_time_s.svg"
+      ],
+      "partial_dependence_log10_total_power_nw": [
+        "E:\\DRAM\\results\\figures\\fig13c_pdp_log10_total_power_nw.png",
+        "E:\\DRAM\\results\\figures\\fig13c_pdp_log10_total_power_nw.pdf",
+        "E:\\DRAM\\results\\figures\\fig13c_pdp_log10_total_power_nw.svg"
+      ],
+      "partial_dependence_read_delay_ns": [
+        "E:\\DRAM\\results\\figures\\fig13d_pdp_read_delay_ns.png",
+        "E:\\DRAM\\results\\figures\\fig13d_pdp_read_delay_ns.pdf",
+        "E:\\DRAM\\results\\figures\\fig13d_pdp_read_delay_ns.svg"
+      ],
+      "partial_dependence_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig13e_pdp_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig13e_pdp_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig13e_pdp_read_margin_mv.svg"
+      ],
+      "partial_dependence_write_efficiency": [
+        "E:\\DRAM\\results\\figures\\fig13f_pdp_write_efficiency.png",
+        "E:\\DRAM\\results\\figures\\fig13f_pdp_write_efficiency.pdf",
+        "E:\\DRAM\\results\\figures\\fig13f_pdp_write_efficiency.svg"
+      ],
+      "pareto_matrix": [
+        "E:\\DRAM\\results\\figures\\fig14_pareto_matrix.png",
+        "E:\\DRAM\\results\\figures\\fig14_pareto_matrix.pdf",
+        "E:\\DRAM\\results\\figures\\fig14_pareto_matrix.svg"
+      ],
+      "parallel_coordinates": [
+        "E:\\DRAM\\results\\figures\\fig15_parallel_coordinates.png",
+        "E:\\DRAM\\results\\figures\\fig15_parallel_coordinates.pdf",
+        "E:\\DRAM\\results\\figures\\fig15_parallel_coordinates.svg"
+      ],
+      "tradeoff": [
+        "E:\\DRAM\\results\\figures\\fig16_tradeoff.png",
+        "E:\\DRAM\\results\\figures\\fig16_tradeoff.pdf",
+        "E:\\DRAM\\results\\figures\\fig16_tradeoff.svg"
+      ],
+      "hypervolume_convergence": [
+        "E:\\DRAM\\results\\figures\\fig17_convergence.png",
+        "E:\\DRAM\\results\\figures\\fig17_convergence.pdf",
+        "E:\\DRAM\\results\\figures\\fig17_convergence.svg"
+      ],
+      "indicator_boxplots": [
+        "E:\\DRAM\\results\\figures\\fig18_indicators.png",
+        "E:\\DRAM\\results\\figures\\fig18_indicators.pdf",
+        "E:\\DRAM\\results\\figures\\fig18_indicators.svg"
+      ],
+      "critical_difference_optimizer_epsilon": [
+        "E:\\DRAM\\results\\figures\\fig19a_cd_optimizer_epsilon.png",
+        "E:\\DRAM\\results\\figures\\fig19a_cd_optimizer_epsilon.pdf",
+        "E:\\DRAM\\results\\figures\\fig19a_cd_optimizer_epsilon.svg"
+      ],
+      "critical_difference_optimizer_hypervolume": [
+        "E:\\DRAM\\results\\figures\\fig19b_cd_optimizer_hypervolume.png",
+        "E:\\DRAM\\results\\figures\\fig19b_cd_optimizer_hypervolume.pdf",
+        "E:\\DRAM\\results\\figures\\fig19b_cd_optimizer_hypervolume.svg"
+      ],
+      "critical_difference_optimizer_igd_plus": [
+        "E:\\DRAM\\results\\figures\\fig19c_cd_optimizer_igd_plus.png",
+        "E:\\DRAM\\results\\figures\\fig19c_cd_optimizer_igd_plus.pdf",
+        "E:\\DRAM\\results\\figures\\fig19c_cd_optimizer_igd_plus.svg"
+      ],
+      "critical_difference_optimizer_igd": [
+        "E:\\DRAM\\results\\figures\\fig19d_cd_optimizer_igd.png",
+        "E:\\DRAM\\results\\figures\\fig19d_cd_optimizer_igd.pdf",
+        "E:\\DRAM\\results\\figures\\fig19d_cd_optimizer_igd.svg"
+      ],
+      "critical_difference_optimizer_n_solutions": [
+        "E:\\DRAM\\results\\figures\\fig19e_cd_optimizer_n_solutions.png",
+        "E:\\DRAM\\results\\figures\\fig19e_cd_optimizer_n_solutions.pdf",
+        "E:\\DRAM\\results\\figures\\fig19e_cd_optimizer_n_solutions.svg"
+      ],
+      "critical_difference_optimizer_spacing": [
+        "E:\\DRAM\\results\\figures\\fig19f_cd_optimizer_spacing.png",
+        "E:\\DRAM\\results\\figures\\fig19f_cd_optimizer_spacing.pdf",
+        "E:\\DRAM\\results\\figures\\fig19f_cd_optimizer_spacing.svg"
+      ],
+      "critical_difference_optimizer_spread": [
+        "E:\\DRAM\\results\\figures\\fig19g_cd_optimizer_spread.png",
+        "E:\\DRAM\\results\\figures\\fig19g_cd_optimizer_spread.pdf",
+        "E:\\DRAM\\results\\figures\\fig19g_cd_optimizer_spread.svg"
+      ],
+      "critical_difference_surrogate_energy_per_access_fj": [
+        "E:\\DRAM\\results\\figures\\fig19h_cd_surrogate_energy_per_access_fj.png",
+        "E:\\DRAM\\results\\figures\\fig19h_cd_surrogate_energy_per_access_fj.pdf",
+        "E:\\DRAM\\results\\figures\\fig19h_cd_surrogate_energy_per_access_fj.svg"
+      ],
+      "critical_difference_surrogate_log10_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig19i_cd_surrogate_log10_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig19i_cd_surrogate_log10_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig19i_cd_surrogate_log10_retention_time_s.svg"
+      ],
+      "critical_difference_surrogate_log10_total_power_nw": [
+        "E:\\DRAM\\results\\figures\\fig19j_cd_surrogate_log10_total_power_nw.png",
+        "E:\\DRAM\\results\\figures\\fig19j_cd_surrogate_log10_total_power_nw.pdf",
+        "E:\\DRAM\\results\\figures\\fig19j_cd_surrogate_log10_total_power_nw.svg"
+      ],
+      "critical_difference_surrogate_read_delay_ns": [
+        "E:\\DRAM\\results\\figures\\fig19k_cd_surrogate_read_delay_ns.png",
+        "E:\\DRAM\\results\\figures\\fig19k_cd_surrogate_read_delay_ns.pdf",
+        "E:\\DRAM\\results\\figures\\fig19k_cd_surrogate_read_delay_ns.svg"
+      ],
+      "critical_difference_surrogate_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig19l_cd_surrogate_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig19l_cd_surrogate_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig19l_cd_surrogate_read_margin_mv.svg"
+      ],
+      "critical_difference_surrogate_write_efficiency": [
+        "E:\\DRAM\\results\\figures\\fig19m_cd_surrogate_write_efficiency.png",
+        "E:\\DRAM\\results\\figures\\fig19m_cd_surrogate_write_efficiency.pdf",
+        "E:\\DRAM\\results\\figures\\fig19m_cd_surrogate_write_efficiency.svg"
+      ],
+      "corner_knee_0_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig20a0_corner_knee_0_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig20a0_corner_knee_0_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig20a0_corner_knee_0_retention_time_s.svg"
+      ],
+      "corner_knee_0_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig20a1_corner_knee_0_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig20a1_corner_knee_0_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig20a1_corner_knee_0_read_margin_mv.svg"
+      ],
+      "corner_weighted_1_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig20b0_corner_weighted_1_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig20b0_corner_weighted_1_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig20b0_corner_weighted_1_retention_time_s.svg"
+      ],
+      "corner_weighted_1_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig20b1_corner_weighted_1_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig20b1_corner_weighted_1_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig20b1_corner_weighted_1_read_margin_mv.svg"
+      ],
+      "corner_best_retention_time_s_2_retention_time_s": [
+        "E:\\DRAM\\results\\figures\\fig20c0_corner_best_retention_time_s_2_retention_time_s.png",
+        "E:\\DRAM\\results\\figures\\fig20c0_corner_best_retention_time_s_2_retention_time_s.pdf",
+        "E:\\DRAM\\results\\figures\\fig20c0_corner_best_retention_time_s_2_retention_time_s.svg"
+      ],
+      "corner_best_retention_time_s_2_read_margin_mv": [
+        "E:\\DRAM\\results\\figures\\fig20c1_corner_best_retention_time_s_2_read_margin_mv.png",
+        "E:\\DRAM\\results\\figures\\fig20c1_corner_best_retention_time_s_2_read_margin_mv.pdf",
+        "E:\\DRAM\\results\\figures\\fig20c1_corner_best_retention_time_s_2_read_margin_mv.svg"
+      ],
+      "monte_carlo_best_read_delay_ns_3": [
+        "E:\\DRAM\\results\\figures\\fig21a_monte_carlo_best_read_delay_ns_3.png",
+        "E:\\DRAM\\results\\figures\\fig21a_monte_carlo_best_read_delay_ns_3.pdf",
+        "E:\\DRAM\\results\\figures\\fig21a_monte_carlo_best_read_delay_ns_3.svg"
+      ],
+      "monte_carlo_best_read_margin_mv_5": [
+        "E:\\DRAM\\results\\figures\\fig21b_monte_carlo_best_read_margin_mv_5.png",
+        "E:\\DRAM\\results\\figures\\fig21b_monte_carlo_best_read_margin_mv_5.pdf",
+        "E:\\DRAM\\results\\figures\\fig21b_monte_carlo_best_read_margin_mv_5.svg"
+      ],
+      "monte_carlo_best_retention_time_s_2": [
+        "E:\\DRAM\\results\\figures\\fig21c_monte_carlo_best_retention_time_s_2.png",
+        "E:\\DRAM\\results\\figures\\fig21c_monte_carlo_best_retention_time_s_2.pdf",
+        "E:\\DRAM\\results\\figures\\fig21c_monte_carlo_best_retention_time_s_2.svg"
+      ],
+      "sobol_indices": [
+        "E:\\DRAM\\results\\figures\\fig22_sobol.png",
+        "E:\\DRAM\\results\\figures\\fig22_sobol.pdf",
+        "E:\\DRAM\\results\\figures\\fig22_sobol.svg"
+      ],
+      "assist_comparison": [
+        "E:\\DRAM\\results\\figures\\fig23_assist_comparison.png",
+        "E:\\DRAM\\results\\figures\\fig23_assist_comparison.pdf",
+        "E:\\DRAM\\results\\figures\\fig23_assist_comparison.svg"
+      ]
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

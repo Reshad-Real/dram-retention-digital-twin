@@ -1,0 +1,27 @@
+\begin{table}[!t]
+\centering
+\caption{Mean Friedman ranks of the surrogate models for log10_total_power_nw (lower is better).}
+\label{tab:statistics_surrogate_ranks_surrogate_log10_total_power_nw}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+group & mean\_rank & rank\_position \\
+\midrule
+mlp\_deep & 1 & 1 \\
+catboost & 2 & 2 \\
+lightgbm & 3 & 3 \\
+xgboost & 4.800 & 4 \\
+hist\_gbr & 5 & 5 \\
+mlp & 5.200 & 6 \\
+poly2\_ridge & 7 & 7 \\
+gpr & 8 & 8 \\
+random\_forest & 9.400 & 9 \\
+svr\_rbf & 9.800 & 10 \\
+extra\_trees & 10.80 & 11 \\
+ridge & 12 & 12 \\
+elasticnet & 13 & 13 \\
+knn & 14 & 14 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Friedman p = 9.298e-09; Nemenyi critical difference = 8.874 at alpha = 0.05.
+\end{table}

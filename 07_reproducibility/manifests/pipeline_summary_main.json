@@ -1,0 +1,68 @@
+{
+  "tag": "main",
+  "quick": false,
+  "finished_utc": "2026-07-23T13:18:50+00:00",
+  "total_duration_s": 687.9,
+  "stages": [
+    {
+      "stage": "00",
+      "script": "00_setup_environment.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "01",
+      "script": "01_validate_spice.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "02",
+      "script": "02_generate_dataset.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "03",
+      "script": "03_assist_study.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "04",
+      "script": "04_train_surrogates.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "05",
+      "script": "05_optimize.py",
+      "status": "skipped"
+    },
+    {
+      "stage": "06",
+      "script": "06_explain.py",
+      "status": "ok",
+      "duration_s": 526.87
+    },
+    {
+      "stage": "07",
+      "script": "07_robustness.py",
+      "status": "ok",
+      "duration_s": 105.56
+    },
+    {
+      "stage": "08",
+      "script": "08_statistics.py",
+      "status": "ok",
+      "duration_s": 1.95
+    },
+    {
+      "stage": "09",
+      "script": "09_figures_tables.py",
+      "status": "ok",
+      "duration_s": 52.62
+    },
+    {
+      "stage": "10",
+      "script": "10_report.py",
+      "status": "ok",
+      "duration_s": 0.89
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Global SHAP feature importance for read_margin_mv.}
+\label{tab:xai_shap_importance_read_margin_mv}
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+feature & mean\_abs\_shap & mean\_shap & importance\_pct \\
+\midrule
+num\_\_vdd & 12.52 & -0.3335 & 11.65 \\
+num\_\_cbl\_ratio & 8.086 & -0.1448 & 7.523 \\
+num\_\_cbl\_over\_cs & 7.956 & -0.1286 & 7.402 \\
+num\_\_vgs\_retention & 7.156 & -0.01476 & 6.657 \\
+num\_\_vwl\_boost & 6.011 & 2.391 & 5.592 \\
+num\_\_vwl\_overdrive & 5.953 & 2.470 & 5.538 \\
+num\_\_charge\_share\_ratio & 5.504 & 0.1916 & 5.121 \\
+num\_\_vblpre\_ratio & 5.457 & 0.2203 & 5.077 \\
+num\_\_vwl\_low & 4.936 & 0.05298 & 4.592 \\
+cat\_\_corner\_FF & 4.685 & 3.729 & 4.358 \\
+cat\_\_corner\_SF & 4.506 & 3.097 & 4.192 \\
+cat\_\_corner\_SS & 4.374 & 2.298 & 4.069 \\
+cat\_\_corner\_TT & 4.258 & 3.434 & 3.961 \\
+cat\_\_corner\_FS & 4.194 & 3.521 & 3.902 \\
+num\_\_t\_write\_pulse & 4.132 & -2.609 & 3.844 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Explainer: PermutationExplainer (model-agnostic).
+\end{table}

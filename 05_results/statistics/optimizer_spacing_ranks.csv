@@ -1,0 +1,7 @@
+group,mean_rank,rank_position
+moead,1.0,1
+bayesian,2.142857142857143,2
+nsga2,3.0,3
+nsga3,4.0,4
+pso,5.285714285714286,5
+de,5.571428571428571,6

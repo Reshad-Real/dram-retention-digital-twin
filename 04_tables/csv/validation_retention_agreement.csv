@@ -1,0 +1,10 @@
+statistic,value
+n_pairs,18.0
+pearson_r_log10,0.9999813114320898
+spearman_rho,1.0
+median_abs_log10_error,0.009785770829811913
+mean_log10_error,-0.011603376058619809
+geometric_mean_ratio,0.9736360010520403
+p90_abs_log10_error,0.02026273620543717
+within_factor_2_pct,100.0
+within_factor_10_pct,100.0

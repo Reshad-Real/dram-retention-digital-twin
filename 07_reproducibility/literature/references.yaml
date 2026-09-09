@@ -1,0 +1,358 @@
+# =====================================================================
+#  Literature base for the dramdt study.
+#
+#  Two groups:
+#    `recent`     2021-2026 works that position this study (located by
+#                 literature search; the URL recorded is the one that was
+#                 retrieved, so every entry is checkable).
+#    `foundational`  the canonical methodological references that the
+#                 framework's algorithms and statistics are built on.
+#
+#  Entries carry only bibliographic fields that were actually confirmed.
+#  Where a field could not be verified it is omitted rather than guessed.
+# =====================================================================
+
+recent:
+  - key: multifidelity_analog_2025
+    title: >-
+      Multi-Fidelity Surrogate Models for Accelerated Multi-Objective Analog
+      Circuit Design and Optimization
+    venue: Electronics (MDPI)
+    year: 2025
+    url: https://doi.org/10.3390/electronics15010105
+    topic: surrogate modelling; multi-objective circuit optimisation
+    relevance: >-
+      Closest methodological neighbour: couples surrogate models with
+      multi-objective search and high-fidelity verification for analog
+      circuits.  This study differs in target (DRAM bit cell, including
+      retention physics), in the breadth of the surrogate comparison, and in
+      applying worst-case PVT reduction inside the optimisation loop.
+
+  - key: analog_ml_review_2025
+    title: "Analog Design and Machine Learning: A Review"
+    venue: Electronics (MDPI)
+    year: 2025
+    url: https://doi.org/10.3390/electronics14173541
+    topic: review of ML in analog design
+    relevance: >-
+      Survey establishing that surrogate-based and simulation-in-the-loop
+      methods are the two dominant families; motivates the surrogate-first
+      design adopted here.
+
+  - key: analog_sizing_ea_dl_2024
+    title: Analog circuit sizing based on Evolutionary Algorithms and deep learning
+    venue: Expert Systems with Applications (Elsevier)
+    year: 2024
+    url: https://www.sciencedirect.com/science/article/abs/pii/S0957417423019826
+    topic: evolutionary sizing with learned models
+    relevance: >-
+      Demonstrates large reductions in SPICE calls when evolutionary search is
+      guided by learned models -- the same economics that make a 50k-sample
+      training campaign worthwhile here.
+
+  - key: ml_global_opt_2024
+    title: Machine Learning Driven Global Optimisation Framework for Analog Circuit Design
+    venue: arXiv
+    year: 2024
+    url: https://arxiv.org/abs/2404.02911
+    topic: ML-guided global optimisation
+    relevance: >-
+      Reports SPICE-call reductions of 56-83 % against standard approaches;
+      supports the surrogate-in-the-loop economics used in this framework.
+
+  - key: ea_analog_benchmark_2023
+    title: >-
+      Performance Evaluation of Evolutionary Algorithms for Analog Integrated
+      Circuit Design Optimisation
+    venue: arXiv
+    year: 2023
+    url: https://arxiv.org/abs/2310.12440
+    topic: benchmarking evolutionary optimisers on circuit problems
+    relevance: >-
+      Precedent for comparing several evolutionary optimisers on the same
+      circuit problem under an equal budget, which is the protocol used here.
+
+  - key: ai_native_eda_2024
+    title: "The Dawn of AI-Native EDA: Opportunities and Challenges of Large Circuit Models"
+    venue: arXiv
+    year: 2024
+    url: https://arxiv.org/abs/2403.07257
+    topic: AI-native EDA landscape
+    relevance: >-
+      Positions learned circuit models within the wider EDA agenda and
+      identifies dataset scarcity as a central obstacle -- which this study
+      addresses by publishing its 50k-point dataset.
+
+  - key: device_modeling_ml_2024
+    title: "When Device Modeling Meets Machine Learning: Opportunities and Challenges"
+    venue: ACM/IEEE International Symposium on Machine Learning for CAD (MLCAD)
+    year: 2024
+    url: https://dl.acm.org/doi/10.1145/3670474.3685972
+    topic: ML for compact/device modelling
+    relevance: >-
+      Frames the device-model-to-ML interface this work sits on: BSIM4 physics
+      supplies the ground truth, ML supplies the fast evaluator.
+
+  - key: digital_twin_semiconductor_2022
+    title: "Digital Twin for Secure Semiconductor Lifecycle Management: Prospects and Applications"
+    venue: arXiv
+    year: 2022
+    url: https://arxiv.org/abs/2205.10962
+    topic: digital twins in the semiconductor lifecycle
+    relevance: >-
+      Establishes digital-twin terminology for semiconductor artefacts; this
+      study instantiates a *design-stage* twin of a DRAM bit cell.
+
+  - key: spicepilot_2024
+    title: "SPICEPilot: Navigating SPICE Code Generation and Simulation with AI Guidance"
+    venue: arXiv
+    year: 2024
+    url: https://arxiv.org/abs/2410.20553
+    topic: automated SPICE deck generation, PySpice-based datasets
+    relevance: >-
+      Uses PySpice to build SPICE datasets programmatically -- the same
+      automation premise, applied there to code generation and here to
+      physics-grounded design-space characterisation.
+
+  - key: pyspice_netlist_framework_2023
+    title: Python Framework for Modular and Parametric SPICE Netlists Generation
+    venue: arXiv
+    year: 2023
+    url: https://arxiv.org/abs/2306.12224
+    topic: parametric netlist generation
+    relevance: >-
+      Direct precedent for configuration-driven netlist construction; this
+      framework extends the idea to a full measurement-and-modelling pipeline.
+
+  - key: pyspice_memristor_snn_2024
+    title: >-
+      PySpice-Simulated In Situ Learning with Memristor Emulation for
+      Single-Layer Spiking Neural Networks
+    venue: Electronics (MDPI) 13(23), 4665
+    year: 2024
+    url: https://www.mdpi.com/2079-9292/13/23/4665
+    topic: PySpice/NGSpice in a research pipeline
+    relevance: >-
+      Recent example of PySpice + NGSpice used as the simulation engine of a
+      published study, supporting the toolchain choice.
+
+  - key: easydram_2025
+    title: >-
+      EasyDRAM: An FPGA-based Infrastructure for Fast and Accurate End-to-End
+      Evaluation of Emerging DRAM Techniques
+    venue: arXiv
+    year: 2025
+    url: https://arxiv.org/abs/2506.10441
+    topic: DRAM characterisation infrastructure
+    relevance: >-
+      Complementary measurement-side infrastructure: EasyDRAM characterises
+      real devices, whereas this framework characterises the design space of a
+      cell before silicon exists.
+
+  - key: ramulator2_accuracy_2026
+    title: "Re-Evaluating the Real-System Modeling Accuracy of Ramulator 2.0"
+    venue: arXiv
+    year: 2026
+    url: https://arxiv.org/abs/2606.14566
+    topic: DRAM simulator fidelity
+    relevance: >-
+      Argues that DRAM modelling accuracy must be validated rather than
+      assumed -- the same principle applied here to the retention model, which
+      is cross-checked against direct transient simulation.
+
+  - key: pendram_2024
+    title: >-
+      PENDRAM: Enabling High-Performance and Energy-Efficient Processing of
+      Deep Neural Networks through a Generalized DRAM Data Mapping Policy
+    venue: arXiv
+    year: 2024
+    url: https://arxiv.org/abs/2408.02412
+    topic: DRAM energy optimisation at the architecture level
+    relevance: >-
+      Represents the architecture-level branch of DRAM energy optimisation;
+      this study operates one level below, at the bit cell and its periphery.
+
+foundational:
+  - key: ptm_2006
+    title: New Generation of Predictive Technology Model for Sub-45 nm Early Design Exploration
+    authors: W. Zhao and Y. Cao
+    venue: IEEE Transactions on Electron Devices, vol. 53, no. 11, pp. 2816-2823
+    year: 2006
+    url: https://doi.org/10.1109/TED.2006.884077
+    topic: the BSIM4 model cards used for every simulation in this study
+
+  - key: bsim4
+    title: BSIM4 MOSFET Model User's Manual
+    authors: BSIM Group, University of California, Berkeley
+    venue: UC Berkeley Device Group
+    url: https://bsim.berkeley.edu/models/bsim4/
+    topic: the compact model (level 54) supplying subthreshold, GIDL, junction and gate-leakage physics
+
+  - key: nsga2
+    title: A Fast and Elitist Multiobjective Genetic Algorithm - NSGA-II
+    authors: K. Deb, A. Pratap, S. Agarwal and T. Meyarivan
+    venue: IEEE Transactions on Evolutionary Computation, vol. 6, no. 2, pp. 182-197
+    year: 2002
+    url: https://doi.org/10.1109/4235.996017
+    topic: the reference multi-objective optimiser
+
+  - key: nsga3
+    title: >-
+      An Evolutionary Many-Objective Optimization Algorithm Using
+      Reference-Point-Based Nondominated Sorting Approach, Part I
+    authors: K. Deb and H. Jain
+    venue: IEEE Transactions on Evolutionary Computation, vol. 18, no. 4, pp. 577-601
+    year: 2014
+    url: https://doi.org/10.1109/TEVC.2013.2281535
+    topic: reference-direction niching for four or more objectives
+
+  - key: moead
+    title: MOEA/D - A Multiobjective Evolutionary Algorithm Based on Decomposition
+    authors: Q. Zhang and H. Li
+    venue: IEEE Transactions on Evolutionary Computation, vol. 11, no. 6, pp. 712-731
+    year: 2007
+    url: https://doi.org/10.1109/TEVC.2007.892759
+    topic: decomposition-based optimisation, and the Tchebycheff scalarisation used for DE/PSO
+
+  - key: de
+    title: Differential Evolution - A Simple and Efficient Heuristic for Global Optimization
+    authors: R. Storn and K. Price
+    venue: Journal of Global Optimization, vol. 11, pp. 341-359
+    year: 1997
+    url: https://doi.org/10.1023/A:1008202821328
+    topic: the DE optimiser
+
+  - key: pso
+    title: Particle Swarm Optimization
+    authors: J. Kennedy and R. Eberhart
+    venue: Proceedings of ICNN'95 - International Conference on Neural Networks, pp. 1942-1948
+    year: 1995
+    url: https://doi.org/10.1109/ICNN.1995.488968
+    topic: the PSO optimiser
+
+  - key: pymoo
+    title: "pymoo: Multi-Objective Optimization in Python"
+    authors: J. Blank and K. Deb
+    venue: IEEE Access, vol. 8, pp. 89497-89509
+    year: 2020
+    url: https://doi.org/10.1109/ACCESS.2020.2990567
+    topic: the optimisation library used
+
+  - key: shap
+    title: A Unified Approach to Interpreting Model Predictions
+    authors: S. M. Lundberg and S.-I. Lee
+    venue: Advances in Neural Information Processing Systems (NeurIPS) 30
+    year: 2017
+    url: https://arxiv.org/abs/1705.07874
+    topic: SHAP attributions used in the explainability stage
+
+  - key: treeshap
+    title: From Local Explanations to Global Understanding with Explainable AI for Trees
+    authors: S. M. Lundberg et al.
+    venue: Nature Machine Intelligence, vol. 2, pp. 56-67
+    year: 2020
+    url: https://doi.org/10.1038/s42256-019-0138-9
+    topic: exact tree SHAP, used for the boosted-tree surrogates
+
+  - key: ale
+    title: Visualizing the Effects of Predictor Variables in Black Box Supervised Learning Models
+    authors: D. W. Apley and J. Zhu
+    venue: Journal of the Royal Statistical Society Series B, vol. 82, no. 4, pp. 1059-1086
+    year: 2020
+    url: https://doi.org/10.1111/rssb.12377
+    topic: accumulated local effects, valid under correlated design variables
+
+  - key: optuna
+    title: "Optuna: A Next-generation Hyperparameter Optimization Framework"
+    authors: T. Akiba, S. Sano, T. Yanase, T. Ohta and M. Koyama
+    venue: Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
+    year: 2019
+    url: https://doi.org/10.1145/3292500.3330701
+    topic: TPE-based hyper-parameter search and multi-objective Bayesian optimisation
+
+  - key: tpe
+    title: Algorithms for Hyper-Parameter Optimization
+    authors: J. Bergstra, R. Bardenet, Y. Bengio and B. Kegl
+    venue: Advances in Neural Information Processing Systems (NeurIPS) 24
+    year: 2011
+    url: https://papers.nips.cc/paper/4443-algorithms-for-hyper-parameter-optimization
+    topic: the Tree-structured Parzen Estimator underlying the Bayesian optimiser
+
+  - key: xgboost
+    title: "XGBoost: A Scalable Tree Boosting System"
+    authors: T. Chen and C. Guestrin
+    venue: Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
+    year: 2016
+    url: https://doi.org/10.1145/2939672.2939785
+    topic: one of the compared surrogate families
+
+  - key: lightgbm
+    title: "LightGBM: A Highly Efficient Gradient Boosting Decision Tree"
+    authors: G. Ke et al.
+    venue: Advances in Neural Information Processing Systems (NeurIPS) 30
+    year: 2017
+    url: https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree
+    topic: one of the compared surrogate families
+
+  - key: catboost
+    title: "CatBoost: unbiased boosting with categorical features"
+    authors: L. Prokhorenkova, G. Gusev, A. Vorobev, A. V. Dorogush and A. Gulin
+    venue: Advances in Neural Information Processing Systems (NeurIPS) 31
+    year: 2018
+    url: https://arxiv.org/abs/1706.09516
+    topic: one of the compared surrogate families; native categorical handling
+
+  - key: demsar
+    title: Statistical Comparisons of Classifiers over Multiple Data Sets
+    authors: J. Demsar
+    venue: Journal of Machine Learning Research, vol. 7, pp. 1-30
+    year: 2006
+    url: https://www.jmlr.org/papers/v7/demsar06a.html
+    topic: the Friedman/Nemenyi protocol and critical-difference diagrams used here
+
+  - key: lhs
+    title: >-
+      A Comparison of Three Methods for Selecting Values of Input Variables in
+      the Analysis of Output from a Computer Code
+    authors: M. D. McKay, R. J. Beckman and W. J. Conover
+    venue: Technometrics, vol. 21, no. 2, pp. 239-245
+    year: 1979
+    url: https://doi.org/10.2307/1268522
+    topic: Latin hypercube sampling
+
+  - key: saltelli
+    title: >-
+      Variance based sensitivity analysis of model output: Design and estimator
+      for the total sensitivity index
+    authors: A. Saltelli et al.
+    venue: Computer Physics Communications, vol. 181, no. 2, pp. 259-270
+    year: 2010
+    url: https://doi.org/10.1016/j.cpc.2009.09.018
+    topic: the Sobol' estimator used in the sensitivity study
+
+  - key: pelgrom
+    title: Matching Properties of MOS Transistors
+    authors: M. J. M. Pelgrom, A. C. J. Duinmaijer and A. P. G. Welbers
+    venue: IEEE Journal of Solid-State Circuits, vol. 24, no. 5, pp. 1433-1439
+    year: 1989
+    url: https://doi.org/10.1109/JSSC.1989.572629
+    topic: the mismatch model used for Monte-Carlo threshold variation
+
+  - key: okabe_ito
+    title: Color Universal Design - How to make figures and presentations that are friendly to colorblind people
+    authors: M. Okabe and K. Ito
+    year: 2008
+    url: https://jfly.uni-koeln.de/color/
+    topic: colour-vision-safe figure design; the baseline the computed palette is checked against
+
+  - key: ngspice
+    title: "Ngspice: open-source mixed-level/mixed-signal circuit simulator"
+    authors: Ngspice development team
+    url: https://ngspice.sourceforge.io/
+    topic: the circuit simulator executing every deck in this study
+
+  - key: pyspice
+    title: "PySpice: Simulate electronic circuits using Python and the Ngspice / Xyce simulators"
+    authors: F. Salvaire
+    url: https://github.com/PySpice-org/PySpice
+    topic: the Python interface to NGSpice used for netlist construction and the shared-library backend

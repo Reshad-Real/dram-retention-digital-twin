@@ -1,0 +1,19 @@
+**Pairwise Wilcoxon signed-rank tests on igd with Holm correction and Cliff's delta.**
+
+| group_1 | group_2 | n_pairs | p_value | p_value_holm | significant | cliffs_delta | effect_magnitude | a12 |
+|---|---|---|---|---|---|---|---|---|
+| bayesian | de | 7 | 0.01562 | 0.2344 | no | -1 | large | 0 |
+| bayesian | moead | 7 | 0.01562 | 0.2344 | no | -1 | large | 0 |
+| bayesian | nsga2 | 7 | 0.2188 | 0.6562 | no | 0.4286 | medium | 0.7143 |
+| bayesian | nsga3 | 7 | 0.5781 | 1 | no | 0.1020 | negligible | 0.5510 |
+| bayesian | pso | 7 | 0.01562 | 0.2344 | no | -1 | large | 0 |
+| de | moead | 7 | 0.07812 | 0.3906 | no | -0.7143 | large | 0.1429 |
+| de | nsga2 | 7 | 0.01562 | 0.2344 | no | 1 | large | 1 |
+| de | nsga3 | 7 | 0.01562 | 0.2344 | no | 1 | large | 1 |
+| de | pso | 7 | 0.9375 | 1 | no | -0.1020 | negligible | 0.4490 |
+| moead | nsga2 | 7 | 0.01562 | 0.2344 | no | 1 | large | 1 |
+| moead | nsga3 | 7 | 0.01562 | 0.2344 | no | 1 | large | 1 |
+| moead | pso | 7 | 0.04688 | 0.2812 | no | 0.7143 | large | 0.8571 |
+| nsga2 | nsga3 | 7 | 0.07812 | 0.3906 | no | -0.6327 | large | 0.1837 |
+| nsga2 | pso | 7 | 0.01562 | 0.2344 | no | -1 | large | 0 |
+| nsga3 | pso | 7 | 0.01562 | 0.2344 | no | -1 | large | 0 |

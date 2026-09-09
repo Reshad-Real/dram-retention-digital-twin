@@ -1,0 +1,19 @@
+\begin{algorithm}[!t]
+\caption{SPICE characterisation of one DRAM design point}
+\label{alg:spice_characterisation_of_one_dram_design_point}
+\begin{algorithmic}[1]
+\Require design point $\mathbf{p}$, technology $\mathcal{T}$, timing schedule $\mathcal{S}$
+\Ensure raw measurement set $\mathcal{M}$, leakage characteristic $I_{\mathrm{leak}}(V)$
+    \State $\mathcal{C} \leftarrow \mathcal{T}.\textsc{CardFor}(\mathbf{p}.\text{corner})$\Comment{corner-specific BSIM4 card}
+    \State build 1T1C cell, bitline pair, boosted precharge, write driver, sense latch
+    \State append \emph{leakage replica}: an identical access device whose storage node is driven by probe source $V_{\mathrm{snp}}$
+    \State $\mathcal{S} \leftarrow \textsc{Schedule}(\mathbf{p})$\Comment{write $\rightarrow$ precharge $\rightarrow$ read $\rightarrow$ sense}
+    \textbf{analysis 1:} \texttt{op} $\Rightarrow$ quiescent supply currents
+    \textbf{analysis 2:} \texttt{tran} over $\mathcal{S}$ with loose ABSTOL\Comment{$\mu$A-scale switching}
+        \State measure $V_{SN}^{\mathrm{hold}}$, $t_{\mathrm{write}}$, $V_{BL},V_{\overline{BL}}$ at $t_{\mathrm{SA}}$, $t_{\mathrm{read}}$, $\int i_{\mathrm{dd}}\,\mathrm{d}t$
+    \textbf{analysis 3:} \texttt{dc} sweep $V_{\mathrm{snp}}: 0 \to V_{DD}$ with tight ABSTOL\Comment{fA-scale leakage}
+        \State $I_{\mathrm{leak}}(V) \leftarrow -\,i(V_{\mathrm{snp}})$\Comment{current leaving the storage node}
+    \Return $\mathcal{M}, I_{\mathrm{leak}}(\cdot)$
+\end{algorithmic}
+\end{algorithm}
+% Note: Tolerances are set per analysis: one global ABSTOL cannot resolve femto-ampere leakage and micro-ampere switching in the same deck.

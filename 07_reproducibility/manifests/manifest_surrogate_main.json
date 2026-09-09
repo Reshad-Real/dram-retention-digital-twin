@@ -1,0 +1,98 @@
+{
+  "stage": "surrogate_main",
+  "started_utc": "2026-07-23T09:51:13.148827+00:00",
+  "finished_utc": "2026-07-23T11:28:23.166505+00:00",
+  "duration_s": 5829.961779799953,
+  "status": "success",
+  "config_hash": "47d27a4f90303940",
+  "seeds": {
+    "master_seed": 20260723,
+    "python_random": true,
+    "numpy_legacy": true,
+    "PYTHONHASHSEED": "20260723"
+  },
+  "parameters": {
+    "dataset": "E:\\DRAM\\data\\processed\\main_processed.parquet"
+  },
+  "outputs": {
+    "best_per_target": {
+      "log10_retention_time_s": "mlp_deep",
+      "read_delay_ns": "mlp_deep",
+      "log10_total_power_nw": "mlp_deep",
+      "read_margin_mv": "mlp",
+      "write_efficiency": "mlp_deep",
+      "energy_per_access_fj": "mlp_deep"
+    },
+    "tuning": {
+      "read_margin_mv::mlp": 0.9512010896585843
+    },
+    "surrogates": "E:\\DRAM\\models\\surrogates_main.joblib",
+    "digital_twin": "E:\\DRAM\\models\\digital_twin_main.joblib",
+    "twin_benchmark": [
+      {
+        "batch_size": 1,
+        "total_ms": 116.2909,
+        "ms_per_design": 116.2909,
+        "designs_per_second": 8.6,
+        "spice_ms_per_design": 1202.141,
+        "speedup_vs_spice": 10.3
+      },
+      {
+        "batch_size": 10,
+        "total_ms": 64.2477,
+        "ms_per_design": 6.42477,
+        "designs_per_second": 155.6,
+        "spice_ms_per_design": 1202.141,
+        "speedup_vs_spice": 187.1
+      },
+      {
+        "batch_size": 100,
+        "total_ms": 73.7083,
+        "ms_per_design": 0.737083,
+        "designs_per_second": 1356.7,
+        "spice_ms_per_design": 1202.141,
+        "speedup_vs_spice": 1630.9
+      },
+      {
+        "batch_size": 1000,
+        "total_ms": 92.9518,
+        "ms_per_design": 0.092952,
+        "designs_per_second": 10758.3,
+        "spice_ms_per_design": 1202.141,
+        "speedup_vs_spice": 12933.0
+      },
+      {
+        "batch_size": 10000,
+        "total_ms": 324.8272,
+        "ms_per_design": 0.032483,
+        "designs_per_second": 30785.6,
+        "spice_ms_per_design": 1202.141,
+        "speedup_vs_spice": 37008.6
+      }
+    ]
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_implementation": "CPython",
+    "git_revision": "<not a git repository>",
+    "packages": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.18.0",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "sklearn": "1.9.0",
+      "xgboost": "3.3.0",
+      "lightgbm": "4.7.0",
+      "catboost": "1.2.10",
+      "optuna": "4.9.0",
+      "shap": "0.52.0",
+      "pymoo": "0.6.2",
+      "PySpice": "1.5",
+      "openpyxl": "3.1.5",
+      "joblib": "1.5.3"
+    }
+  },
+  "error": null
+}

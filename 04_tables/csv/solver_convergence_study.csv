@@ -1,0 +1,4 @@
+setting,ms_per_sample,speedup_vs_reference,read_margin_mv_median_err_pct,read_margin_mv_p95_err_pct,read_delay_ns_median_err_pct,read_delay_ns_p95_err_pct,write_delay_ns_median_err_pct,write_delay_ns_p95_err_pct,v_sn_written_v_median_err_pct,v_sn_written_v_p95_err_pct,retention_time_s_median_err_pct,retention_time_s_p95_err_pct,energy_per_access_fj_median_err_pct,energy_per_access_fj_p95_err_pct,total_power_nw_median_err_pct,total_power_nw_p95_err_pct,read_success_agreement_pct,write_success_agreement_pct
+50 ps / GEAR,63.0,1.693,0.0091,0.1449,0.0153,0.242,0.152,0.7592,0.0038,0.042,0.0018,0.4649,0.0565,0.3348,0.0549,0.33,100.0,100.0
+50 ps / TRAP,60.9,1.752,0.0031,0.0284,0.0111,0.1547,0.0391,0.6964,0.0007,0.0058,0.0003,0.0517,0.0213,0.1653,0.0207,0.1591,100.0,100.0
+100 ps / GEAR,47.4,2.249,0.0199,0.5967,0.1581,0.8344,0.368,1.3665,0.0119,0.1842,0.0034,1.7379,0.1905,0.5836,0.1788,0.5444,100.0,100.0

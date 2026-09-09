@@ -1,0 +1,11 @@
+item,value
+n_input,50000
+n_output,49987
+removed,"{""simulation_failed"": 1, ""not_converged"": 3, ""incomplete_measurements"": 9}"
+labelled,"{""read_success"": 39289, ""write_success"": 34985, ""retention_censored"": 0, ""design_feasible"": 28955}"
+engineered_features,"[""charge_share_ratio"", ""cbl_over_cs"", ""signal_charge_c"", ""stored_charge_c"", ""vwl_overdrive"", ""vgs_write"", ""vgs_retention"", ""access_aspect"", ""access_area"", ""temperature_k"", ""inv_thermal_v"", ""sa_drive_ratio"", ""sa_aspect""]"
+target_transforms,"{""retention_time_s"": ""log10_retention_time_s"", ""total_power_nw"": ""log10_total_power_nw""}"
+outliers_flagged,"{""retention_time_s"": 1700, ""read_delay_ns"": 0, ""total_power_nw"": 850, ""read_margin_mv"": 315}"
+split_sizes,"{""train"": 34992, ""val"": 7499, ""test"": 7496}"
+notes,"[""retention_time_s: 7236 values floored at 1e-12 before the log10 transform"", ""split stratified by 'corner'""]"
+retention_rate,0.99974

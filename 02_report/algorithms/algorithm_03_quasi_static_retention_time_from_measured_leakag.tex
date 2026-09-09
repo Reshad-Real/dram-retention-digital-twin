@@ -1,0 +1,22 @@
+\begin{algorithm}[!t]
+\caption{Quasi-static retention time from measured leakage}
+\label{alg:quasi_static_retention_time_from_measured_leakage}
+\begin{algorithmic}[1]
+\Require leakage characteristic $I_{\mathrm{leak}}(V)$ (measured, Algorithm~2)
+\Require node capacitance $C_{\mathrm{node}}$, written level $V_{\mathrm{init}}$
+\Require precharge level $V_{\mathrm{BLpre}}$, capacitances $C_s, C_{BL}$, sense-amplifier offset $\Delta V_{\min}$
+\Ensure retention time $t_{\mathrm{ret}}$ and a censoring flag
+    \State $V_{\mathrm{fail}} \leftarrow V_{\mathrm{BLpre}} + \Delta V_{\min}\,\dfrac{C_s+C_{BL}}{C_s}$\Comment{charge sharing no longer resolvable}
+    \If{$V_{\mathrm{init}} \le V_{\mathrm{fail}}$}
+        \Return $t_{\mathrm{ret}} \leftarrow 0$\Comment{a real observation, not a missing value}
+    \EndIf
+    \State $\mathcal{V} \leftarrow$ uniform grid on $[V_{\mathrm{fail}}, V_{\mathrm{init}}]$
+    \State $I \leftarrow \textsc{Interp}(I_{\mathrm{leak}}, \mathcal{V})$
+    \If{$\min I \le \epsilon$}
+        \Return $t_{\mathrm{ret}} \leftarrow \infty$ \textbf{(censored)}\Comment{node equilibrates above $V_{\mathrm{fail}}$}
+    \EndIf
+    \State $t_{\mathrm{ret}} \leftarrow \displaystyle\int_{V_{\mathrm{fail}}}^{V_{\mathrm{init}}} \frac{C_{\mathrm{node}}}{I_{\mathrm{leak}}(V)}\,\mathrm{d}V$\Comment{trapezoidal quadrature}
+    \Return $t_{\mathrm{ret}}$
+\end{algorithmic}
+\end{algorithm}
+% Note: Exact for an isolated capacitor under quasi-static leakage; validated against direct long-window transient simulation.

@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this dataset, digital twin, or framework, please cite both the paper and this repository."
+title: "Quasi-Static Retention Modeling from SPICE-Measured Storage-Node Leakage: Digital-Twin Simulation for Large-Scale DRAM Design-Space Exploration (reproducibility package)"
+# ---- FILL IN before publishing the repo ----
+authors:
+  - given-names: "<Your given name>"
+    family-names: "<Your family name>"
+    # email: "you@example.com"      # optional; uncomment only if you want it public
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: "2026-09-09"
+license: MIT
+repository-code: "https://github.com/<your-github-username>/dram-retention-digital-twin"
+keywords:
+  - DRAM
+  - retention
+  - digital twin
+  - surrogate model
+  - SPICE
+  - multi-objective optimization
+  - design-space exploration
+# Uncomment and complete once the article is accepted, so the button cites the paper:
+# preferred-citation:
+#   type: article
+#   title: "Quasi-Static Retention Modeling from SPICE-Measured Storage-Node Leakage: Digital-Twin Simulation for Large-Scale DRAM Design-Space Exploration"
+#   authors:
+#     - given-names: "<Your given name>"
+#       family-names: "<Your family name>"
+#   journal: "<Journal name>"
+#   year: <year>
+#   doi: "<article DOI>"

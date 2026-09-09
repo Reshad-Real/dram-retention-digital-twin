@@ -1,0 +1,213 @@
+# =====================================================================
+#  dramdt -- shared defaults
+#  Architecture-specific configurations `extends: base.yaml` and override
+#  only what differs.  Nothing in this file is DRAM-node specific.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# NOTE ON NUMERIC LITERALS
+# PyYAML follows YAML 1.1, whose float pattern requires a *signed* exponent.
+# `1.0e-15` parses as a float, but `1.0e15` parses as the STRING "1.0e15".
+# Every consumer in this framework coerces with float(), so such values are
+# still numerically correct, and dataset writers run them through
+# dramdt.dataset.preprocess.sanitize_for_parquet.  When adding new keys prefer
+# `1.0e+15` (or a plain `1000000000000000.0`) so the type is right at the source.
+# ---------------------------------------------------------------------
+
+meta:
+  name: base
+  description: Shared simulation / metric / experiment defaults.
+  framework_version: "1.0.0"
+
+# ---------------------------------------------------------------------
+# Waveform schedule (seconds).  Absolute times are assembled by
+# dramdt.models.cell.TimingSchedule; the two knobs that are *design
+# variables* (write pulse width, sense delay) live in design_space.
+# ---------------------------------------------------------------------
+timing:
+  edge_time_s: 100.0e-12          # rise/fall time of every logic stimulus
+  gap_s: 1.0e-9                   # dead time between phases
+  initial_precharge_s: 5.0e-9     # settle the array before the write
+  precharge_s: 10.0e-9            # precharge/equalise before the read
+  sense_window_s: 40.0e-9         # observation window after the SA fires.
+                                  # Must exceed the slowest resolution time in
+                                  # the design space, otherwise slow-but-working
+                                  # designs are censored as read failures.
+
+# ---------------------------------------------------------------------
+# Solver configuration.  GEAR/MAXORD=2 is used because the storage node is
+# a very high-impedance node; trapezoidal integration rings on it.
+# Tight ABSTOL/VNTOL are required to resolve femto-ampere leakage.
+# ---------------------------------------------------------------------
+simulation:
+  tnom: 27
+  # Transient print step.  A convergence study over 120 randomly drawn design
+  # points (scripts/01_validate_spice.py) gives, relative to a 20 ps step:
+  # median |rel. error| <= 0.18 % and p95 <= 0.8 % on every extracted metric,
+  # with read/write pass-fail labels identical on 100 % of points, for 15 % less
+  # solver time.  See results/tables/solver_convergence_study.csv.
+  tran_step_s: 50.0e-12
+  leakage_sweep_points: 51        # points in the DC I_leak(V_SN) sweep
+  timeout_s: 300
+  backend: subprocess             # subprocess | pyspice-shared
+  options:
+    RELTOL: 1.0e-4
+    CHGTOL: 1.0e-16
+    METHOD: GEAR
+    MAXORD: 2
+    ITL1: 200
+    ITL4: 100
+  # Per-analysis tolerances, applied inside the .control block.  The transient
+  # resolves micro-amp switching currents; the leakage DC sweep resolves
+  # femto-amps.  A single global ABSTOL cannot serve both -- too tight and the
+  # transient timestep collapses on the write-driver branch, too loose and the
+  # leakage floor is numerical noise.
+  tran_abstol: 1.0e-13
+  tran_vntol: 1.0e-6
+  tran_gmin: 1.0e-13
+  dc_abstol: 1.0e-18
+  dc_vntol: 1.0e-9
+  dc_gmin: 1.0e-15
+  dc_reltol: 1.0e-5
+
+# ---------------------------------------------------------------------
+# Metric definitions.  These are modelling choices, made explicit.
+# ---------------------------------------------------------------------
+metrics:
+  sense_margin_min_v: 0.025       # SA input-referred offset + guard band
+  write_success_fraction: 0.85    # V_SN/VDD required to call a write successful
+  read_resolve_fraction: 0.90     # |V_BL-V_BLB|/VDD required to call a read resolved
+  access_rate_hz: 1.0e5           # per-cell access rate used for active power
+  refresh_guard_band: 2.0         # refresh interval = retention / guard_band
+  node_cap_overhead_f: 0.0        # extra storage-node capacitance beyond Cs
+  retention_grid_points: 2001     # quadrature points for the retention integral
+  retention_censor_cap_s: 1.0e3   # value recorded when retention is right-censored
+
+# ---------------------------------------------------------------------
+# Stage 3b -- preprocessing.  Only physically invalid observations are
+# removed; genuine design failures are kept and labelled.
+# ---------------------------------------------------------------------
+preprocessing:
+  drop_failed_simulations: true
+  drop_nonconverged: true
+  drop_incomplete_measurements: true
+  feature_engineering: true
+  log_floor: 1.0e-12              # floor applied before a log10 target transform
+  outlier_method: iqr             # iqr | mad
+  outlier_factor: 3.0
+  outlier_action: flag            # flag | clip | drop  (flag keeps the data)
+  stratify_by: corner
+  split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+
+# ---------------------------------------------------------------------
+# Sampling campaign
+# ---------------------------------------------------------------------
+experiment:
+  n_samples: 50000
+  sampler: lhs                    # lhs | sobol | random | grid
+  lhs_criterion: maximin          # maximin | centered | classic
+  lhs_iterations: 20
+  seed: 20260723
+  n_workers: 0                    # 0 == auto (cpu_count - 2)
+  chunk_size: 125
+  retention_validation_fraction: 0.004   # share of points also run as a long transient
+  retention_validation_window_s: 0.05
+  monte_carlo:
+    enabled: true
+    n_designs: 40                 # design points that receive an MC campaign
+    n_trials: 300                 # mismatch trials per design point
+  corner_sweep:
+    enabled: true
+    n_designs: 60                 # design points swept over every PVT corner
+    temperatures_c: [-40, 27, 85, 125]
+
+# ---------------------------------------------------------------------
+# Stage 7 -- assist techniques.  Each entry is a declarative transform of a
+# design point; `side_effects` encodes the physical price of the assist.
+# ---------------------------------------------------------------------
+assist_techniques:
+  baseline:
+    category: reference
+    description: >-
+      Unassisted reference: nominal wordline boost, VDD/2 bitline precharge,
+      grounded wordline low level and an ideal (leakage-free) storage dielectric.
+    set:
+      vwl_boost: 0.50
+      vblpre_ratio: 0.50
+      vwl_low: 0.0
+      rdiel: 1.0e15
+
+  high_k_capacitor:
+    category: cell
+    description: >-
+      High-k / high-C storage capacitor: 1.8x storage capacitance at the same
+      cell footprint, at the cost of a leakier dielectric.
+    scale:
+      cs: 1.8
+    side_effects:
+      rdiel: 2.0e13               # thinner high-k stack leaks more
+
+  wordline_boost:
+    category: periphery
+    description: >-
+      Elevated VPP so the access device passes a full '1' without a Vth drop.
+    set:
+      vwl_boost: 0.85
+
+  negative_wordline:
+    category: periphery
+    description: >-
+      Negative wordline low level. This suppresses subthreshold conduction from
+      the storage node to the bitline, but it simultaneously raises the reverse
+      gate-to-drain field at the storage-node junction and therefore increases
+      gate-induced drain leakage (GIDL). Which effect wins is a property of the
+      device, not an assumption: the assist study measures it. For the PTM
+      low-power card used here, subthreshold is already negligible at VWL = 0,
+      so the GIDL term dominates beyond roughly -0.15 V.
+    set:
+      vwl_low: -0.30
+
+  bitline_precharge_opt:
+    category: periphery
+    description: >-
+      Bitline precharge level moved below VDD/2, trading '0' margin for '1'
+      margin and reducing precharge energy.
+    set:
+      vblpre_ratio: 0.42
+
+  sense_amp_upsize:
+    category: periphery
+    description: >-
+      Larger, PMOS-rebalanced sense-amplifier latch with a stronger enable
+      footer: lower input-referred offset and faster resolution.
+    scale:
+      wsan: 1.6
+      wsap_ratio: 1.15
+      wen_ratio: 1.4
+
+  refresh_interval_opt:
+    category: policy
+    description: >-
+      Retention-aware refresh scheduling: the refresh interval tracks the
+      measured worst-case retention with a tightened guard band instead of a
+      fixed 64 ms budget.
+    refresh_policy: retention_aware
+
+  combined_low_power:
+    category: combined
+    description: >-
+      All cell, periphery and policy assists applied together -- the
+      configuration the multi-objective search is expected to approach.
+    scale:
+      cs: 1.8
+      wsan: 1.6
+    set:
+      vwl_boost: 0.85
+      vwl_low: -0.30
+      vblpre_ratio: 0.42
+    side_effects:
+      rdiel: 2.0e13
+    refresh_policy: retention_aware

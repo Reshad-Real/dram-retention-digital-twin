@@ -1,0 +1,27 @@
+\begin{table}[!t]
+\centering
+\caption{Mean Friedman ranks of the surrogate models for read_margin_mv (lower is better).}
+\label{tab:statistics_surrogate_ranks_surrogate_read_margin_mv}
+\footnotesize
+\begin{tabular}{lrr}
+\toprule
+group & mean\_rank & rank\_position \\
+\midrule
+mlp & 1.200 & 1 \\
+mlp\_deep & 2 & 2 \\
+catboost & 2.800 & 3 \\
+hist\_gbr & 4 & 4 \\
+lightgbm & 5 & 5 \\
+xgboost & 6 & 6 \\
+extra\_trees & 7 & 7 \\
+random\_forest & 8 & 8 \\
+poly2\_ridge & 9.200 & 9 \\
+gpr & 9.800 & 10 \\
+svr\_rbf & 11 & 11 \\
+knn & 12 & 12 \\
+ridge & 13.20 & 13 \\
+elasticnet & 13.80 & 14 \\
+\bottomrule
+\end{tabular}
+\\[2pt] \footnotesize Friedman p = 7.756e-09; Nemenyi critical difference = 8.874 at alpha = 0.05.
+\end{table}

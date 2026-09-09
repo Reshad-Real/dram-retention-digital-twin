@@ -1,0 +1,12 @@
+**Distribution of the spacing indicator across independent optimisation runs.**
+
+| indicator | group | n | mean | std | median | iqr | min | max | mean_ci_low | mean_ci_high |
+|---|---|---|---|---|---|---|---|---|---|---|
+| spacing | bayesian | 7 | 2.658 | 0.5135 | 2.611 | 0.7035 | 2.038 | 3.451 | 2.323 | 3.006 |
+| spacing | de | 7 | 9.341 | 2.476 | 8.877 | 1.225 | 6.107 | 14.24 | 7.814 | 11.27 |
+| spacing | moead | 7 | 0.2030 | 0.05186 | 0.2041 | 0.08729 | 0.1474 | 0.2714 | 0.1685 | 0.2375 |
+| spacing | nsga2 | 7 | 3.179 | 0.5143 | 3.375 | 0.8159 | 2.494 | 3.792 | 2.819 | 3.519 |
+| spacing | nsga3 | 7 | 5.816 | 1.200 | 6.094 | 0.9952 | 3.411 | 6.950 | 4.934 | 6.521 |
+| spacing | pso | 7 | 8.771 | 2.391 | 8.088 | 0.8002 | 7.011 | 14.05 | 7.592 | 10.62 |
+
+_Friedman p = 5.567e-06; Kendall's W = 0.9184. Lower is better. mean_ci_* are 95 % percentile-bootstrap intervals._

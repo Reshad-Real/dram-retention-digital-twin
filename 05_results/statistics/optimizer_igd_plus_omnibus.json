@@ -1,0 +1,8 @@
+{
+  "test": "friedman",
+  "statistic": 30.755102040816325,
+  "p_value": 1.0470012926402537e-05,
+  "n_blocks": 7,
+  "k_treatments": 6,
+  "kendalls_w": 0.8787172011661807
+}
